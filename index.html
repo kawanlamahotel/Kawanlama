@@ -486,7 +486,7 @@
 </head>
 <body>
 
-    <div id="login-page">
+    <div id="login-page" class="hidden">
         <div class="text-center text-white bg-black bg-opacity-50 p-6 rounded-xl shadow-2xl animate-fade-in login-box">
             
             <h1 class="title-font text-3xl font-bold mb-2">Penginapan Kawan Lama Mardingding</h1>
@@ -501,7 +501,7 @@
         </div>
     </div>
 
-    <div id="main-content">
+    <div id="main-content" class="hidden">
         <header class="fixed w-full z-50 bg-white shadow-lg">
             <div class="container mx-auto px-4 py-4 flex justify-between items-center">
                 <div class="flex items-center">
@@ -552,7 +552,11 @@
                     <p class="text-gray-600 mt-4 max-w-3xl mx-auto text-lg">
                         Temukan pengalaman menginap tak terlupakan dalam suasana perdesaan yang asri dengan pilihan kamar kami yang didesain untuk kenyamanan dan ketenangan Anda.
                     </p>
-                </div>
+                    
+                    <button onclick="kirimKodeVoucher()" class="whatsapp-btn inline-block font-semibold py-3 px-8 rounded-full transition duration-300 text-lg shadow-lg mt-8">
+                        <i class="fab fa-whatsapp mr-2"></i> Klaim Kode Diskon (VIP/Deluxe)
+                    </button>
+                    </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                     <div class="room-card group bg-white rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 transform hover:scale-105" data-room="standard">
@@ -899,9 +903,12 @@
 
                     <div class="md:w-1/2">
                         <div class="bg-white p-10 rounded-2xl shadow-xl h-full">
-                            <h3 class="title-font text-3xl font-bold mb-6 text-gray-900">Sosial Media</h3>
-                            <p class="text-gray-600 mb-6 text-lg">Ikuti kami di media sosial untuk mendapatkan informasi terbaru dan penawaran spesial.</p>
+                            <h3 class="title-font text-3xl font-bold mb-6 text-gray-900">Sosial Media & Promo</h3>
+                            <p class="text-gray-600 mb-6 text-lg">Ikuti kami di media sosial dan dapatkan kode diskon spesial!</p>
 
+                            <button onclick="kirimKodeVoucher()" class="whatsapp-btn w-full font-semibold py-3 px-8 rounded-full transition duration-300 text-lg shadow-lg mb-8">
+                                <i class="fab fa-whatsapp mr-2"></i> Klaim Kode Diskon (VIP/Deluxe)
+                            </button>
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                                 <a href="https://www.facebook.com/kawanlamamardingding" target="_blank" class="social-icon bg-blue-600 hover:bg-blue-700 text-white p-6 rounded-xl text-center transition shadow-md">
                                     <i class="fab fa-facebook-f text-3xl mb-2"></i>
@@ -1427,6 +1434,37 @@
     </div>
 
     <script>
+        // --- NEW: FUNGSI WHATSAPP UNTUK KODE DISKON (Tanpa Sisa/Batasan) ---
+        function kirimKodeVoucher() {
+            // [PASTIKAN KODE DISKON INI SESUAI DENGAN KODE YANG INGIN ANDA BERIKAN]
+            const kodeDiskon = "DISKONKBLAMA50"; 
+            
+            // Nomor WhatsApp CS (Ganti dengan nomor yang benar, diawali 62)
+            const nomorWhatsAppCS = "6282218399499"; 
+            
+            // Teks Pesan WhatsApp yang sudah diperbaiki (tanpa sisa & batasan penggunaan)
+            const pesan = `🎉 Selamat! Anda mendapatkan kode diskon spesial dari Penginapan Kawan Lama! 🎉
+
+*Kode Voucher Anda:*
+*${kodeDiskon}*
+
+*Kode ini berlaku untuk pemesanan Kamar Deluxe, VIP B, dan VIP A.*
+
+*Cara Klaim Diskon:*
+1. Salin kode voucher di atas.
+2. Lanjutkan ke proses pemesanan kamar yang berlaku.
+3. Masukkan kode voucher di kolom 'Kode Voucher' pada formulir pemesanan.
+
+Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
+[Tautan ke Situs Web Anda: ${window.location.href}]
+`;
+
+            const tautanWhatsApp = \`https://wa.me/${nomorWhatsAppCS}?text=\${encodeURIComponent(pesan)}\`;
+            window.open(tautanWhatsApp, '_blank');
+        }
+        // --- END NEW FUNCTION ---
+        
+        
         // --- DEVICE ID & AUTO-LOGIN LOGIC (Dipertahankan, tetapi dengan tampilan default ke main-content) ---
         function getDeviceID() {
             let deviceID = localStorage.getItem('deviceID');
@@ -1555,19 +1593,28 @@
             'O8P1Q4R7', 'P7Q2R9S3', 'Q6R1S4T9', 'R5S9T2U8', 'S4T8U1V7', 'T3U7V9W4', 'U2V6W8X5', 'V1W5X7Y3', 'W9X4Y6Z2', 'X8Y3Z5A1',
             'Y7Z2A4B9', 'Z6A1B3C8', '0H5I4J3K', '1L8M7N6O', '2P9Q8R7S', '3T1U9V2W', '4X5Y1Z6A', '5B2C7D3E', '6F9G4H8I', '7J4K1L5M',
             '8N6O9P3Q', '9R2S7T4U', 'A8G1H5F2', 'B9C2D3E6', 'C7B4A1G9', 'D5H8J2K7', 'E6F9G3L4', 'F2G7H4I9', 'G1J4K5L8', 'H9I2J7K3',
-            'I5J8K6L1', 'J4K7L9M2', 'K3L6M1N4', 'L2M5N8O1', 'M1N4O7P2', 'N9O2P5Q8', 'O8P1Q4R7', 'P7Q2R9S3', 'Q6R1S4T9', 'R5S9T2U8'
+            'I5J8K6L1', 'J4K7L9M2', 'K3L6M1N4', 'L2M5N8O1', 'M1N4O7P2', 'N9O2P5Q8', 'O8P1Q4R7', 'P7Q2R9S3', 'Q6R1S4T9', 'R5S9T2U8',
+            
+            // Tambahkan DISKONKBLAMA50 ke daftar kode yang valid
+            'DISKONKBLAMA50'
         ];
 
         // Hanya pertahankan penggunaan per perangkat
         let VOUCHER_USAGE_DEVICE = JSON.parse(localStorage.getItem('voucherUsageDevice')) || {};
         
-        // --- MODIFIKASI: HILANGKAN VARIABEL GLOBAL VOUCHER DAN KUOTA ---
         const VOUCHER_DISCOUNTS = {
             'deluxe': 100000,
             'vip-b': 125000,
-            'vip-a': 150000
+            'vip-a': 150000,
+            // Tambahkan diskon untuk kode DISKONKBLAMA50
+            'DISKONKBLAMA50': { 
+                'deluxe': 100000,
+                'vip-b': 125000,
+                'vip-a': 150000
+            }
         };
-        const MAX_USES_PER_DEVICE = 2; // Batas 2 kali per user ID (tetap dipertahankan)
+
+        const MAX_USES_PER_DEVICE = 2; // Batas 2 kali per user ID
         // Batas 100 kali global DIHILANGKAN
 
         let isKaraokeRoom = false;
@@ -1651,7 +1698,6 @@
             }
             
             const deviceUsage = VOUCHER_USAGE_DEVICE[deviceID] && VOUCHER_USAGE_DEVICE[deviceID][voucherCode] ? VOUCHER_USAGE_DEVICE[deviceID][voucherCode] : 0;
-            // Pengecekan kuota global dihapus
 
             if (deviceUsage >= MAX_USES_PER_DEVICE) {
                 voucherMessage.textContent = `Maaf, Anda sudah mencapai batas penggunaan voucher ini (${MAX_USES_PER_DEVICE} kali) per perangkat.`;
@@ -1659,16 +1705,28 @@
                 return;
             }
 
-            if (VOUCHER_DISCOUNTS[roomType]) {
-                const discountedPrice = VOUCHER_DISCOUNTS[roomType];
-                document.getElementById('final-room-price').value = discountedPrice;
-                updateTotalPrice(discountedPrice);
-                voucherMessage.textContent = 'Voucher berhasil diterapkan!';
-                voucherMessage.classList.add('text-green-600');
+            let discountedPrice = 0;
+
+            if (voucherCode === 'DISKONKBLAMA50') {
+                if (VOUCHER_DISCOUNTS[voucherCode][roomType]) {
+                    discountedPrice = VOUCHER_DISCOUNTS[voucherCode][roomType];
+                } else {
+                    voucherMessage.textContent = 'Kode DISKONKBLAMA50 hanya berlaku untuk Deluxe, VIP B, dan VIP A.';
+                    voucherMessage.classList.add('text-red-600');
+                    return;
+                }
+            } else if (VOUCHER_DISCOUNTS[roomType] && typeof VOUCHER_DISCOUNTS[roomType] === 'number') {
+                discountedPrice = VOUCHER_DISCOUNTS[roomType];
             } else {
                 voucherMessage.textContent = 'Voucher tidak berlaku untuk kamar ini.';
                 voucherMessage.classList.add('text-red-600');
+                return;
             }
+            
+            document.getElementById('final-room-price').value = discountedPrice;
+            updateTotalPrice(discountedPrice);
+            voucherMessage.textContent = 'Voucher berhasil diterapkan!';
+            voucherMessage.classList.add('text-green-600');
         }
 
         function incrementQuantity() {
@@ -1776,11 +1834,10 @@
                 originalRoomPrice = Number(document.getElementById('original-room-price').value);
             }
             
-            const isVoucherApplied = (voucherCode && VOUCHER_CODES.includes(voucherCode) && VOUCHER_DISCOUNTS[roomType] && finalRoomPrice < originalRoomPrice);
+            const isVoucherApplied = (voucherCode && VOUCHER_CODES.includes(voucherCode) && finalRoomPrice < originalRoomPrice);
             
             if (isVoucherApplied) {
                 const deviceUsage = VOUCHER_USAGE_DEVICE[deviceID] && VOUCHER_USAGE_DEVICE[deviceID][voucherCode] ? VOUCHER_USAGE_DEVICE[deviceID][voucherCode] : 0;
-                // Pengecekan kuota global dihapus
                 
                 if (deviceUsage < MAX_USES_PER_DEVICE) {
                      // Update usage per device
@@ -1792,8 +1849,6 @@
                     }
                     VOUCHER_USAGE_DEVICE[deviceID][voucherCode]++;
                     localStorage.setItem('voucherUsageDevice', JSON.stringify(VOUCHER_USAGE_DEVICE));
-                    
-                    // Update global usage Dihapus
                 }
             }
             
@@ -1825,11 +1880,11 @@
             message += `*Metode Pembayaran*: ${paymentMethod === 'cod' ? 'Bayar di Tempat' : 'Transfer Bank'}\n`;
             
             if (isVoucherApplied) {
-                const maskedVoucher = voucherCode.substring(0, 3) + '***' + voucherCode.substring(6);
-                message += `\n*User ID Acak*: ${deviceID}\n`;
-                message += `*Kode Voucher Acak*: ${maskedVoucher}\n`;
-                // Sisa kuota global dihilangkan dari pesan WhatsApp
+                const maskedVoucher = voucherCode.substring(0, 3) + '***' + voucherCode.substring(voucherCode.length - 3);
+                message += `\n*Kode Voucher Dipakai*: ${maskedVoucher}\n`;
             }
+
+            message += `\n*User ID Acak (Admin Only)*: ${deviceID}\n`; // Tampilkan user ID acak untuk referensi admin
             
             message += `\n*Ketentuan Booking Kamar:*\n`;
             message += `1. Saat Check in silahkan infokan nama pemesan.\n`;
@@ -1841,7 +1896,7 @@
             message += `Privasi dan kenyamanan anda prioritas kami.`;
 
             const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/6282218399499?text=${encodedMessage}`;
+            const whatsappUrl = `https://wa.me/6282218399499?text=${encodedMessage}`; // Nomor CS
             window.open(whatsappUrl, '_blank');
 
             closeConfirmation();
@@ -1869,25 +1924,29 @@
 
             if (document.getElementById('voucher-container').classList.contains('hidden') === false && voucherCode) {
                 const deviceUsage = VOUCHER_USAGE_DEVICE[deviceID] && VOUCHER_USAGE_DEVICE[deviceID][voucherCode] ? VOUCHER_USAGE_DEVICE[deviceID][voucherCode] : 0;
-                // Pengecekan kuota global dihapus
 
                 if (!VOUCHER_CODES.includes(voucherCode)) {
                     showAlert('Peringatan', 'Kode voucher tidak valid.');
                     return;
                 }
                 
-                // Pengecekan kuota global dihapus
-
                 if (deviceUsage >= MAX_USES_PER_DEVICE) {
                     showAlert('Peringatan', `Maaf, Anda sudah mencapai batas penggunaan voucher ini (${MAX_USES_PER_DEVICE} kali) per perangkat.`);
                     return;
                 }
                 
-                if (VOUCHER_DISCOUNTS[roomType]) {
-                    finalRoomPrice = VOUCHER_DISCOUNTS[roomType];
+                let discountAmount = 0;
+                if (voucherCode === 'DISKONKBLAMA50' && VOUCHER_DISCOUNTS[voucherCode][roomType]) {
+                     discountAmount = originalRoomPrice - VOUCHER_DISCOUNTS[voucherCode][roomType];
+                } else if (VOUCHER_DISCOUNTS[roomType] && typeof VOUCHER_DISCOUNTS[roomType] === 'number') {
+                     discountAmount = originalRoomPrice - VOUCHER_DISCOUNTS[roomType];
+                }
+
+                if (discountAmount > 0) {
+                    finalRoomPrice = originalRoomPrice - discountAmount;
                     isVoucherApplied = true;
                 } else {
-                    showAlert('Peringatan', 'Voucher tidak berlaku untuk kamar ini.');
+                    showAlert('Peringatan', 'Voucher tidak berlaku atau tidak valid untuk kamar ini.');
                     return;
                 }
             }
