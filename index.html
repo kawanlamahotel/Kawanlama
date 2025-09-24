@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* CSS Anda Dipertahankan */
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f8f5f2;
@@ -97,8 +98,10 @@
             opacity: 1;
             visibility: visible;
         }
+        
+        /* PERBAIKAN: Mengganti 'bg.jpg' menjadi '1000009667.jpg' untuk Hero Section */
         .hero {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('bg.jpg');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('1000009667.jpg');
             background-size: cover;
             background-position: center;
         }
@@ -276,7 +279,8 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('bg.jpg');
+            /* PERBAIKAN: Mengganti 'bg.jpg' menjadi '1000009667.jpg' untuk Login Page */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('1000009667.jpg');
             background-size: cover;
             background-position: center;
             animation: fadeIn 1s ease forwards;
@@ -486,9 +490,8 @@
 </head>
 <body>
 
-    <div id="login-page" class="hidden">
+    <div id="login-page" class="hidden"> 
         <div class="text-center text-white bg-black bg-opacity-50 p-6 rounded-xl shadow-2xl animate-fade-in login-box">
-            
             <h1 class="title-font text-3xl font-bold mb-2">Penginapan Kawan Lama Mardingding</h1>
             <p class="text-sm mb-4 font-light">Selamat datang di penginapan kawan lama</p>
             <div class="mb-4">
@@ -501,11 +504,11 @@
         </div>
     </div>
 
-    <div id="main-content" class="hidden">
+    <div id="main-content" class="block"> 
         <header class="fixed w-full z-50 bg-white shadow-lg">
             <div class="container mx-auto px-4 py-4 flex justify-between items-center">
                 <div class="flex items-center">
-                    <img src="bg.jpg" alt="Penginapan Kawan Lama Logo" class="h-12 w-12 rounded-full mr-3 shadow-md">
+                    <img src="1000009667.jpg" alt="Penginapan Kawan Lama Logo" class="h-12 w-12 rounded-full mr-3 shadow-md">
                     <h1 class="title-font text-xl md:text-2xl font-bold text-amber-800">Penginapan Kawan Lama</h1>
                 </div>
                 <nav class="hidden md:flex space-x-8">
@@ -536,7 +539,7 @@
         <section id="home" class="hero pt-40 pb-56 md:pt-64 md:pb-80 flex items-center relative">
             <div class="absolute inset-0 bg-black opacity-50"></div>
             <div class="container mx-auto px-4 dtext-center text-white relative z-10">
-                <img src="bg.jpg" alt="Penginapan Kawan Lama" class="h-28 w-28 rounded-full mx-auto mb-6 border-4 border-white shadow-xl">
+                <img src="1000009667.jpg" alt="Penginapan Kawan Lama" class="h-28 w-28 rounded-full mx-auto mb-6 border-4 border-white shadow-xl">
                 <h1 class="title-font text-4xl md:text-5xl font-bold mb-6 animate-fade-in">Penginapan Kawan Lama Mardingding</h1>
                 <p class="text-xl md:text-3xl mb-8 max-w-3xl mx-auto animate-fade-in delay-100 font-light">Tempat menginap eksklusif dengan pemandangan perdesaan yang asri</p>
                 <a href="#rooms" class="inline-block bg-amber-700 hover:bg-amber-800 text-white font-semibold py-4 px-10 rounded-full transition duration-300 animate-fade-in delay-200 text-lg shadow-lg">
@@ -770,7 +773,7 @@
             <div class="container mx-auto px-4">
                 <div class="flex flex-col md:flex-row items-center">
                     <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
-                        <img src="tentang.png"
+                        <img src="53fea575-6eee-410f-8b30-bd531bc6fd48" 
                               alt="Penginapan Kawan Lama"
                               class="rounded-2xl shadow-2xl w-full h-auto">
                     </div>
@@ -872,7 +875,7 @@
                                         <h4 class="font-bold text-gray-800">Alamat</h4>
                                         <p class="text-gray-600">Jl. Rakoeta Sembiring Brahmana No. 991, Mardingding, Karo, Sumatera Utara</p>
                                         <a href="https://maps.app.goo.gl/asjqQ92aJeFdzDbBA?g_st=aw" target="_blank" rel="noopener noreferrer">
-                                            <img src="maps.jpg" alt="Google Maps Location" class="map-image">
+                                            <img src="53fea575-6eee-410f-8b30-bd531bc6fd48" alt="Google Maps Location" class="map-image">
                                         </a>
                                     </div>
                                 </div>
@@ -1434,15 +1437,11 @@
     </div>
 
     <script>
-        // --- NEW: FUNGSI WHATSAPP UNTUK KODE DISKON (Tanpa Sisa/Batasan) ---
+        // --- FUNGSI WHATSAPP UNTUK KODE DISKON ---
         function kirimKodeVoucher() {
-            // [PASTIKAN KODE DISKON INI SESUAI DENGAN KODE YANG INGIN ANDA BERIKAN]
             const kodeDiskon = "DISKONKBLAMA50"; 
-            
-            // Nomor WhatsApp CS (Ganti dengan nomor yang benar, diawali 62)
             const nomorWhatsAppCS = "6282218399499"; 
             
-            // Teks Pesan WhatsApp yang sudah diperbaiki (tanpa sisa & batasan penggunaan)
             const pesan = `🎉 Selamat! Anda mendapatkan kode diskon spesial dari Penginapan Kawan Lama! 🎉
 
 *Kode Voucher Anda:*
@@ -1459,13 +1458,13 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
 [Tautan ke Situs Web Anda: ${window.location.href}]
 `;
 
-            const tautanWhatsApp = \`https://wa.me/${nomorWhatsAppCS}?text=\${encodeURIComponent(pesan)}\`;
+            const tautanWhatsApp = `https://wa.me/${nomorWhatsAppCS}?text=${encodeURIComponent(pesan)}`;
             window.open(tautanWhatsApp, '_blank');
         }
-        // --- END NEW FUNCTION ---
+        // --- END WHATSAPP FUNCTION ---
         
         
-        // --- DEVICE ID & AUTO-LOGIN LOGIC (Dipertahankan, tetapi dengan tampilan default ke main-content) ---
+        // --- DEVICE ID & AUTO-LOGIN LOGIC (PERBAIKAN KRITIS) ---
         function getDeviceID() {
             let deviceID = localStorage.getItem('deviceID');
             if (!deviceID) {
@@ -1483,38 +1482,30 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
             
             userIdDisplay.value = deviceID;
 
-            // Logika diubah: Secara default tampilkan main-content.
-            // Halaman login disembunyikan kecuali jika pengguna belum pernah berkunjung.
+            // PERBAIKAN: Secara default tampilkan main-content. Hanya tampilkan login jika benar-benar kunjungan pertama.
             if (!localStorage.getItem('hasVisited')) {
-                 // Pengunjung baru, tampilkan halaman login
                 loginPage.style.display = 'flex';
                 mainContent.style.display = 'none';
                 document.body.style.overflow = 'hidden';
-                console.log(`First-time visit. User ID: ${deviceID}`);
             } else {
-                // User sudah pernah login sebelumnya, langsung masuk ke beranda
                 loginPage.style.display = 'none';
-                mainContent.style.display = 'block';
+                mainContent.style.display = 'block'; // Pastikan konten utama terlihat
                 document.body.style.overflow = 'auto';
                 document.documentElement.style.scrollBehavior = 'smooth';
                 initializeScrollAnimations();
-                console.log(`Auto-login. Device ID: ${deviceID}`);
             }
         }
 
         document.getElementById('login-button').addEventListener('click', function() {
-            // Tandai user sebagai "sudah pernah berkunjung"
             localStorage.setItem('hasVisited', 'true');
-            // Alihkan ke fungsi utama
             checkUserAndRedirect();
         });
         
-        // --- PERBAIKAN: Fungsi ini sekarang akan memeriksa apakah perlu menampilkan login atau konten utama ---
         document.addEventListener('DOMContentLoaded', checkUserAndRedirect);
         // --- END DEVICE ID & AUTO-LOGIN LOGIC ---
 
-        // Scroll animations and other functions are retained as is...
-        
+
+        // --- FUNGSI ANIMASI & UTILITY (Dipertahankan) ---
         function initializeScrollAnimations() {
             const animatedElements = document.querySelectorAll('section, .room-card');
             const observer = new IntersectionObserver((entries) => {
@@ -1535,7 +1526,11 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
                 observer.observe(el);
             });
 
-            document.querySelector('section').classList.add('visible');
+            // Ensure the first section is visible immediately
+            const homeSection = document.querySelector('#home');
+            if (homeSection) {
+                homeSection.classList.add('visible');
+            }
         }
 
         // Scroll to top button
@@ -1562,7 +1557,10 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
         const mm = String(today.getMonth() + 1).padStart(2, '0');
         const yyyy = today.getFullYear();
         const minDate = yyyy + '-' + mm + '-' + dd;
-        document.getElementById('booking-date').min = minDate;
+        const bookingDateInput = document.getElementById('booking-date');
+        if (bookingDateInput) {
+            bookingDateInput.min = minDate;
+        }
         
         // Mobile menu toggle
         function toggleMobileMenu() {
@@ -1581,32 +1579,93 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
             document.body.style.overflow = 'auto';
         }
 
-        // --- Voucher and Booking Logic ---
-        // Daftar kode voucher acak yang valid
+        function showAlert(title, message) {
+            const alert = document.getElementById('alert-notification');
+            document.getElementById('alert-title').textContent = title;
+            document.getElementById('alert-message').textContent = message;
+            alert.classList.remove('hidden');
+            setTimeout(() => {
+                alert.classList.add('hidden');
+            }, 5000);
+        }
+
+        function closeAlert() {
+            document.getElementById('alert-notification').classList.add('hidden');
+        }
+        
+        function closeConfirmation() {
+            document.getElementById('confirmation-modal').classList.add('hidden');
+            document.getElementById('confirmation-modal').classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Payment method selection
+        function selectPaymentMethod(method, event) {
+            const bankOptions = document.getElementById('bank-options');
+            const transferWarning = document.getElementById('transfer-warning');
+
+            document.querySelectorAll('.payment-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+
+            if (method === 'transfer') {
+                bankOptions.classList.remove('hidden');
+                transferWarning.classList.remove('hidden'); 
+            } else {
+                bankOptions.classList.add('hidden');
+                transferWarning.classList.add('hidden'); 
+            }
+        }
+
+        function resetPaymentOptions() {
+            document.querySelectorAll('.payment-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            document.getElementById('bank-options').classList.add('hidden');
+            document.getElementById('transfer-warning').classList.add('hidden');
+            const codRadio = document.querySelector('input[name="payment"][value="cod"]');
+            if (codRadio) {
+                codRadio.checked = true;
+            }
+            // Tambahkan class 'selected' ke COD secara default
+            const codOption = document.querySelector('.payment-option').closest('div');
+            if (codOption && codOption.querySelector('input[value="cod"]')) {
+                codOption.classList.add('selected');
+            }
+        }
+        
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = event.currentTarget;
+                btn.textContent = 'Tersalin!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = 'Salin';
+                    btn.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+        // --- END FUNGSI ANIMASI & UTILITY ---
+
+
+        // --- VOUCHER & BOOKING LOGIC ---
         const VOUCHER_CODES = [
             '0B3H4D5Y', '1K8Z6P3M', '2R9Q7J5N', '3C1W8L6A', '4F5G9H2S', '5V2T7B4U', '6P9Y3R8E', '7E4A1X5C', '8M6N9O3Z', '9L2J7S4D',
             'A8G1H5F2', 'B9C2D3E6', 'C7B4A1G9', 'D5H8J2K7', 'E6F9G3L4', 'F2G7H4I9', 'G1J4K5L8', 'H9I2J7K3', 'I5J8K6L1', 'J4K7L9M2',
             'K3L6M1N4', 'L2M5N8O1', 'M1N4O7P2', 'N9O2P5Q8', 'O8P1Q4R7', 'P7Q2R9S3', 'Q6R1S4T9', 'R5S9T2U8', 'S4T8U1V7', 'T3U7V9W4',
             'U2V6W8X5', 'V1W5X7Y3', 'W9X4Y6Z2', 'X8Y3Z5A1', 'Y7Z2A4B9', 'Z6A1B3C8', '0H5I4J3K', '1L8M7N6O', '2P9Q8R7S', '3T1U9V2W',
-            '4X5Y1Z6A', '5B2C7D3E', '6F9G4H8I', '7J4K1L5M', '8N6O9P3Q', '9R2S7T4U', 'A8G1H5F2', 'B9C2D3E6', 'C7B4A1G9', 'D5H8J2K7',
-            'E6F9G3L4', 'F2G7H4I9', 'G1J4K5L8', 'H9I2J7K3', 'I5J8K6L1', 'J4K7L9M2', 'K3L6M1N4', 'L2M5N8O1', 'M1N4O7P2', 'N9O2P5Q8',
-            'O8P1Q4R7', 'P7Q2R9S3', 'Q6R1S4T9', 'R5S9T2U8', 'S4T8U1V7', 'T3U7V9W4', 'U2V6W8X5', 'V1W5X7Y3', 'W9X4Y6Z2', 'X8Y3Z5A1',
-            'Y7Z2A4B9', 'Z6A1B3C8', '0H5I4J3K', '1L8M7N6O', '2P9Q8R7S', '3T1U9V2W', '4X5Y1Z6A', '5B2C7D3E', '6F9G4H8I', '7J4K1L5M',
-            '8N6O9P3Q', '9R2S7T4U', 'A8G1H5F2', 'B9C2D3E6', 'C7B4A1G9', 'D5H8J2K7', 'E6F9G3L4', 'F2G7H4I9', 'G1J4K5L8', 'H9I2J7K3',
-            'I5J8K6L1', 'J4K7L9M2', 'K3L6M1N4', 'L2M5N8O1', 'M1N4O7P2', 'N9O2P5Q8', 'O8P1Q4R7', 'P7Q2R9S3', 'Q6R1S4T9', 'R5S9T2U8',
-            
-            // Tambahkan DISKONKBLAMA50 ke daftar kode yang valid
-            'DISKONKBLAMA50'
+            '4X5Y1Z6A', '5B2C7D3E', '6F9G4H8I', '7J4K1L5M', '8N6O9P3Q', '9R2S7T4U', 'DISKONKBLAMA50' // Kode promo utama
         ];
 
-        // Hanya pertahankan penggunaan per perangkat
         let VOUCHER_USAGE_DEVICE = JSON.parse(localStorage.getItem('voucherUsageDevice')) || {};
         
         const VOUCHER_DISCOUNTS = {
             'deluxe': 100000,
             'vip-b': 125000,
             'vip-a': 150000,
-            // Tambahkan diskon untuk kode DISKONKBLAMA50
             'DISKONKBLAMA50': { 
                 'deluxe': 100000,
                 'vip-b': 125000,
@@ -1615,7 +1674,6 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
         };
 
         const MAX_USES_PER_DEVICE = 2; // Batas 2 kali per user ID
-        // Batas 100 kali global DIHILANGKAN
 
         let isKaraokeRoom = false;
         let quantity = 1;
@@ -1636,13 +1694,14 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
             const voucherContainer = document.getElementById('voucher-container');
             const quantityContainer = document.getElementById('quantity-container');
             
+            // Reset fields
             voucherContainer.classList.add('hidden');
             quantityContainer.classList.add('hidden');
-
             document.getElementById('voucher-code').value = '';
             document.getElementById('voucher-message').textContent = '';
             document.getElementById('voucher-message').className = 'text-sm mt-2 font-semibold';
-            
+            resetPaymentOptions(); // Reset pilihan pembayaran
+
             isKaraokeRoom = isKaraoke;
             
             if (isKaraoke) {
@@ -1686,6 +1745,7 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
             const roomType = document.getElementById('room-type').value;
             const voucherMessage = document.getElementById('voucher-message');
             
+            // Reset tampilan harga dan pesan
             document.getElementById('final-room-price').value = originalPrice;
             updateTotalPrice(originalPrice);
             voucherMessage.textContent = '';
@@ -1706,21 +1766,22 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
             }
 
             let discountedPrice = 0;
+            let discountValid = false;
 
             if (voucherCode === 'DISKONKBLAMA50') {
                 if (VOUCHER_DISCOUNTS[voucherCode][roomType]) {
                     discountedPrice = VOUCHER_DISCOUNTS[voucherCode][roomType];
-                } else {
-                    voucherMessage.textContent = 'Kode DISKONKBLAMA50 hanya berlaku untuk Deluxe, VIP B, dan VIP A.';
-                    voucherMessage.classList.add('text-red-600');
-                    return;
+                    discountValid = true;
                 }
             } else if (VOUCHER_DISCOUNTS[roomType] && typeof VOUCHER_DISCOUNTS[roomType] === 'number') {
                 discountedPrice = VOUCHER_DISCOUNTS[roomType];
-            } else {
-                voucherMessage.textContent = 'Voucher tidak berlaku untuk kamar ini.';
-                voucherMessage.classList.add('text-red-600');
-                return;
+                discountValid = true;
+            }
+            
+            if (!discountValid) {
+                 voucherMessage.textContent = 'Voucher tidak berlaku untuk kamar ini.';
+                 voucherMessage.classList.add('text-red-600');
+                 return;
             }
             
             document.getElementById('final-room-price').value = discountedPrice;
@@ -1750,71 +1811,7 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
             document.getElementById('total-price').textContent = 'Total Harga: Rp 0';
             document.getElementById('original-price-display').classList.add('hidden');
         }
-
-        // Payment method selection
-        function selectPaymentMethod(method, event) {
-            const bankOptions = document.getElementById('bank-options');
-            const transferWarning = document.getElementById('transfer-warning');
-
-            document.querySelectorAll('.payment-option').forEach(option => {
-                option.classList.remove('selected');
-            });
-            event.currentTarget.classList.add('selected');
-
-            if (method === 'transfer') {
-                bankOptions.classList.remove('hidden');
-                transferWarning.classList.remove('hidden'); // Tampilkan peringatan
-            } else {
-                bankOptions.classList.add('hidden');
-                transferWarning.classList.add('hidden'); // Sembunyikan peringatan
-            }
-        }
-
-        // Copy to clipboard function
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                const btn = event.currentTarget;
-                btn.textContent = 'Tersalin!';
-                btn.classList.add('copied');
-                setTimeout(() => {
-                    btn.textContent = 'Salin';
-                    btn.classList.remove('copied');
-                }, 2000);
-            }).catch(err => {
-                console.error('Failed to copy text: ', err);
-            });
-        }
-
-        function resetPaymentOptions() {
-            document.querySelectorAll('.payment-option').forEach(option => {
-                option.classList.remove('selected');
-            });
-            document.getElementById('bank-options').classList.add('hidden');
-            document.getElementById('transfer-warning').classList.add('hidden');
-            document.querySelector('input[name="payment"][value="cod"]').checked = true;
-        }
-
-        function closeConfirmation() {
-            document.getElementById('confirmation-modal').classList.add('hidden');
-            document.getElementById('confirmation-modal').classList.remove('flex');
-            document.body.style.overflow = 'auto';
-        }
-
-        function showAlert(title, message) {
-            const alert = document.getElementById('alert-notification');
-            document.getElementById('alert-title').textContent = title;
-            document.getElementById('alert-message').textContent = message;
-            alert.classList.remove('hidden');
-            setTimeout(() => {
-                alert.classList.add('hidden');
-            }, 5000);
-        }
-
-        function closeAlert() {
-            document.getElementById('alert-notification').classList.add('hidden');
-        }
-
-        // WhatsApp redirection function
+        
         function redirectToWhatsApp() {
             const name = document.getElementById('booking-name').value;
             const roomType = document.getElementById('room-type').value;
@@ -1828,7 +1825,7 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
             let originalRoomPrice;
             if (isKaraokeRoom) {
                 finalRoomPrice = quantity * pricePerHour;
-                originalRoomPrice = finalRoomPrice; // No original price for karaoke, it's a dynamic price
+                originalRoomPrice = finalRoomPrice; 
             } else {
                 finalRoomPrice = Number(document.getElementById('final-room-price').value);
                 originalRoomPrice = Number(document.getElementById('original-room-price').value);
@@ -1836,11 +1833,11 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
             
             const isVoucherApplied = (voucherCode && VOUCHER_CODES.includes(voucherCode) && finalRoomPrice < originalRoomPrice);
             
+            // --- Logika Update Penggunaan Voucher ---
             if (isVoucherApplied) {
                 const deviceUsage = VOUCHER_USAGE_DEVICE[deviceID] && VOUCHER_USAGE_DEVICE[deviceID][voucherCode] ? VOUCHER_USAGE_DEVICE[deviceID][voucherCode] : 0;
                 
                 if (deviceUsage < MAX_USES_PER_DEVICE) {
-                     // Update usage per device
                     if (!VOUCHER_USAGE_DEVICE[deviceID]) {
                         VOUCHER_USAGE_DEVICE[deviceID] = {};
                     }
@@ -1851,6 +1848,7 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
                     localStorage.setItem('voucherUsageDevice', JSON.stringify(VOUCHER_USAGE_DEVICE));
                 }
             }
+            // --- End Logika Update Voucher ---
             
             const formattedDate = new Date(date).toLocaleDateString('id-ID', {
                 weekday: 'long',
@@ -1896,7 +1894,7 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
             message += `Privasi dan kenyamanan anda prioritas kami.`;
 
             const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/6282218399499?text=${encodedMessage}`; // Nomor CS
+            const whatsappUrl = `https://wa.me/6282218399499?text=${encodedMessage}`; 
             window.open(whatsappUrl, '_blank');
 
             closeConfirmation();
@@ -2024,38 +2022,35 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
                 showAlert('Pemesanan Berhasil!', alertMessage);
             }, 500);
         }
-    </script>
-    <script>
+        // --- END VOUCHER & BOOKING LOGIC ---
+
+        // --- CAROUSEL LOGIC (Dipertahankan) ---
         document.addEventListener('DOMContentLoaded', () => {
             const carouselContainers = document.querySelectorAll('.carousel-container');
-            const AUTOPLAY_INTERVAL = 3000; // 3 seconds
+            const AUTOPLAY_INTERVAL = 3000; 
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     const container = entry.target;
                     if (entry.isIntersecting) {
-                        // Start autoplay only when the carousel is visible
                         startAutoplay(container);
                     } else {
-                        // Stop autoplay when the carousel is no longer visible
                         stopAutoplay(container);
                     }
                 });
             }, {
-                threshold: 0.5 // Adjust as needed, 0.5 means 50% of the carousel is visible
+                threshold: 0.5 
             });
 
             carouselContainers.forEach(container => {
                 const carouselTrack = container.querySelector('.carousel-track');
                 const imagesAttr = carouselTrack.getAttribute('data-images');
-                const images = imagesAttr.split(',').map(src => src.trim());
+                const images = imagesAttr ? imagesAttr.split(',').map(src => src.trim()) : [];
 
                 if (images.length === 0) return;
 
-                // Clear any existing content to prevent duplication
                 carouselTrack.innerHTML = '';
 
-                // Create and append slides for the carousel
                 images.forEach(src => {
                     const slide = document.createElement('div');
                     slide.classList.add('carousel-slide');
@@ -2063,30 +2058,27 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
                     carouselTrack.appendChild(slide);
                 });
                 
-                // Add autoplay timer to the container's dataset
                 container.dataset.currentIndex = 0;
                 container.dataset.totalSlides = images.length;
                 container.dataset.isDragging = 'false';
                 
-                // Initial update and start observing
                 updateCarousel(container);
                 observer.observe(container);
 
-                // Navigation buttons
                 const prevBtn = container.querySelector('.prev-btn');
                 const nextBtn = container.querySelector('.next-btn');
                 
                 if (nextBtn) {
                     nextBtn.addEventListener('click', () => {
                         moveToNextSlide(container);
-                        startAutoplay(container); // Restart timer
+                        startAutoplay(container); 
                     });
                 }
 
                 if (prevBtn) {
                     prevBtn.addEventListener('click', () => {
                         moveToPrevSlide(container);
-                        startAutoplay(container); // Restart timer
+                        startAutoplay(container); 
                     });
                 }
                 
@@ -2102,23 +2094,21 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
                 container.addEventListener('touchend', e => {
                     touchEndX = e.changedTouches[0].clientX;
                     handleSwipe(container);
-                    startAutoplay(container); // Restart autoplay after touch ends
+                    startAutoplay(container); 
                 });
 
                 function handleSwipe(container) {
-                    const threshold = 50; // Minimum distance to be considered a swipe
+                    const threshold = 50; 
                     const swipeDistance = touchEndX - touchStartX;
 
                     if (swipeDistance > threshold) {
-                        // Swiped right (previous)
                         moveToPrevSlide(container);
                     } else if (swipeDistance < -threshold) {
-                        // Swiped left (next)
                         moveToNextSlide(container);
                     }
                 }
 
-                // Mouse Drag functionality (for desktop)
+                // Mouse Drag functionality
                 let isDragging = false;
                 let startPos = 0;
                 let currentTranslate = 0;
@@ -2129,19 +2119,18 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
                     container.dataset.isDragging = 'true';
                     startPos = e.clientX;
                     stopAutoplay(container);
-                    carouselTrack.style.transition = 'none'; // Disable transition for smooth dragging
+                    carouselTrack.style.transition = 'none'; 
                 });
 
                 container.addEventListener('mouseup', () => {
                     isDragging = false;
                     container.dataset.isDragging = 'false';
                     const movedBy = currentTranslate - prevTranslate;
-                    if (movedBy < -100) { // Swiped left
+                    if (movedBy < -100) { 
                         moveToNextSlide(container);
-                    } else if (movedBy > 100) { // Swiped right
+                    } else if (movedBy > 100) { 
                         moveToPrevSlide(container);
                     } else {
-                        // Snap back to the current slide if not enough movement
                         updateCarousel(container);
                     }
                     carouselTrack.style.transition = 'transform 0.5s ease-in-out';
@@ -2190,7 +2179,7 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
             }
             
             function startAutoplay(container) {
-                stopAutoplay(container); // Clear existing timer
+                stopAutoplay(container); 
                 container.dataset.autoplayTimer = setInterval(() => {
                     moveToNextSlide(container);
                 }, AUTOPLAY_INTERVAL);
@@ -2204,11 +2193,12 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
                 }
             }
 
-            // Handle window resize
             window.addEventListener('resize', () => {
                 carouselContainers.forEach(container => updateCarousel(container));
             });
         });
+        // --- END CAROUSEL LOGIC ---
+
     </script>
 </body>
 </html>
