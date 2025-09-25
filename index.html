@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LYRLT7TRZP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-LYRLT7TRZP');
+    </script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Penginapan Kawan Lama - Hotel Dengan Suasana Perdesaan Yang Asri</title>
@@ -8,6 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Global & Typography */
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f8f5f2;
@@ -16,45 +26,37 @@
         .title-font {
             font-family: 'Playfair Display', serif;
         }
-                
+        
         /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
         .animate-fade-in {
             animation: fadeIn 1s ease forwards;
             opacity: 0;
         }
-        .delay-100 {
-            animation-delay: 100ms;
-        }
-        .delay-200 {
-            animation-delay: 200ms;
-        }
-        .delay-300 {
-            animation-delay: 300ms;
-        }
-                
+
         /* Scroll animations */
-        section {
+        section, .room-card {
             opacity: 0;
             transform: translateY(50px);
             transition: all 0.6s ease-out;
         }
-        section.visible {
+        section.visible, .room-card.visible {
             opacity: 1;
             transform: translateY(0);
         }
-        .room-card {
-            transition: all 0.3s ease;
-            transform: translateY(20px);
-            opacity: 0;
-        }
-        .room-card.visible {
-            transform: translateY(0);
-            opacity: 1;
-        }
+
+        /* Modals */
         .modal {
             transition: all 0.3s ease;
             opacity: 0;
@@ -67,40 +69,19 @@
         .booking-form {
             animation: fadeIn 0.5s ease forwards;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .grow {
-            transition: all .2s ease-in-out;
-        }
-        .grow:hover {
-            transform: scale(1.03);
-        }
-                
-        /* Confirmation Modal */
-        #confirmation-modal {
-            transition: all 0.3s ease;
-            opacity: 0;
-            visibility: hidden;
-        }
         #confirmation-modal.flex {
             opacity: 1;
             visibility: visible;
         }
+        
+        /* Hero Section */
         .hero {
             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('bg.jpg');
             background-size: cover;
             background-position: center;
         }
-                
-        /* New background pattern */
-        .bg-pattern {
-            background-color: #f8f5f2;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d1c7b7' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-                
-        /* Vision & Mission Cards */
+        
+        /* Components */
         .vm-card {
             transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -109,16 +90,12 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
         }
-                
-        /* Social Media Icons */
         .social-icon {
             transition: all 0.3s ease;
         }
         .social-icon:hover {
             transform: scale(1.1);
         }
-                
-        /* Payment Options */
         .payment-option {
             transition: all 0.3s ease;
             border: 1px solid #e5e7eb;
@@ -130,23 +107,12 @@
             border-color: #d97706;
             background-color: #fef3c7;
         }
-                
-        /* Countdown Timer */
-        .countdown-timer {
-            font-family: 'Courier New', monospace;
-            font-weight: bold;
-            color: #d97706;
-        }
-                
-        /* Bank Logo */
         .bank-logo {
             width: 40px;
             height: 40px;
             object-fit: contain;
             margin-right: 12px;
         }
-                
-        /* Copy Button */
         .copy-btn {
             transition: all 0.2s ease;
         }
@@ -157,8 +123,6 @@
             background-color: #10b981;
             color: white;
         }
-
-        /* Alert Notification */
         .alert-notification {
             position: fixed;
             top: 20px;
@@ -168,74 +132,12 @@
             width: 90%;
             animation: slideIn 0.5s forwards, fadeOut 0.5s forwards 3s;
         }
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
-        }
-
-        /* WhatsApp Button */
         .whatsapp-btn {
             background-color: #25D366;
             color: white;
         }
         .whatsapp-btn:hover {
             background-color: #128C7E;
-        }
-
-        /* Mission Logo */
-        .mission-logo {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
-            margin-bottom: 16px;
-        }
-
-        /* Square room images */
-        .room-image-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 100%; /* 1:1 Aspect Ratio */
-            overflow: hidden;
-        }
-        .room-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Quantity input */
-        .quantity-input {
-            display: flex;
-            align-items: center;
-        }
-        .quantity-btn {
-            width: 30px;
-            height: 30px;
-            border: 1px solid #d1d5db;
-            background-color: #f3f4f6;
-            font-size: 16px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .quantity-btn:hover {
-            background-color: #e5e7eb;
-        }
-        .quantity-value {
-            width: 50px;
-            text-align: center;
-            border-top: 1px solid #d1d5db;
-            border-bottom: 1px solid #d1d5db;
-            padding: 0 5px;
-            margin: 0 -1px;
         }
         .map-image {
             width: 100%;
@@ -250,8 +152,6 @@
             transform: scale(1.02);
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-
-        /* Disable input style */
         .voucher-input[disabled] {
             background-color: #e9ecef;
             cursor: not-allowed;
@@ -261,8 +161,8 @@
             cursor: not-allowed;
             pointer-events: none;
         }
-
-        /* Login page styles */
+        
+        /* Login Page */
         #login-page {
             display: flex;
             align-items: center;
@@ -276,42 +176,11 @@
         #main-content {
             display: none;
         }
-        /* Adjusted styles for the smaller login box */
         .login-box {
-            width: 100%;
-            max-width: 280px; /* Smaller max-width */
-            padding: 2rem; /* Reduced padding */
-        }
-        .login-box img {
-            height: 80px;
-            width: 80px;
-            margin-bottom: 0.75rem;
-        }
-        .login-box h1 {
-            font-size: 2rem; /* Smaller font size for title */
-        }
-        .login-box p {
-            font-size: 0.875rem; /* Smaller font size for subtitle */
-        }
-        .login-box input {
-            font-size: 0.875rem; /* Smaller font size for input */
-            padding: 0.5rem;
-        }
-        .login-box button {
-            font-size: 0.875rem; /* Smaller font size for button */
-            padding: 0.6rem 1.5rem;
-        }
-
-        /* Perbesar ikon menu hamburger */
-        .md\:hidden.text-gray-700 .fa-bars {
-            font-size: 1.5rem;
+            max-width: 280px;
         }
         
-        /* New styles for luxurious modal */
-        /*
-          * MODIFICATION START:
-          * Mengubah tata letak modal untuk tampilan yang lebih teratur.
-          */
+        /* Luxurious Modal Styles */
         .lux-modal-content {
             display: flex;
             flex-direction: column;
@@ -320,28 +189,25 @@
             .lux-modal-content {
                 flex-direction: row;
             }
-            .lux-modal-image-container {
+            .lux-modal-image-container, .lux-modal-details-container {
                 width: 50%;
             }
-            .lux-modal-details-container {
-                width: 50%;
+            .lux-modal-image-container {
+                border-bottom-left-radius: 0.5rem;
+                border-top-right-radius: 0;
             }
         }
         .lux-modal-image-container {
             position: relative;
             overflow: hidden;
-            border-radius: 0;
-            border-top-left-radius: 0.5rem;
-            border-top-right-radius: 0.5rem;
-            /* New aspect ratio for images */
-            height: 200px; /* Reduced height for a more compact look */
+            border-radius: 0.5rem;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            height: 200px;
         }
         @media (min-width: 768px) {
             .lux-modal-image-container {
-                border-top-left-radius: 0.5rem;
-                border-bottom-left-radius: 0.5rem;
-                border-top-right-radius: 0;
-                height: 100%; /* Restore full height on desktop */
+                height: 100%;
             }
         }
         .lux-modal-image {
@@ -355,61 +221,6 @@
         }
         .lux-modal-details-container {
             padding: 2.5rem;
-        }
-        /* New font sizes for elegance and stability */
-        .lux-modal-title {
-            font-size: 2rem; /* Reduced font size */
-            font-weight: bold;
-            color: #1a202c;
-            margin-bottom: 0.5rem;
-        }
-        .lux-modal-price {
-            font-size: 1.5rem; /* Reduced font size */
-            color: #d97706;
-            font-weight: 700;
-            margin-bottom: 1.5rem; /* Reduced margin */
-        }
-        .lux-modal-subtitle {
-            font-size: 1rem; /* Reduced font size */
-            font-weight: 600;
-            color: #2d3748;
-            margin-bottom: 0.75rem;
-        }
-        .lux-modal-text {
-            color: #4a5568;
-            font-size: 0.95rem; /* Reduced font size */
-            line-height: 1.6;
-        }
-        .lux-modal-list {
-            padding-left: 0;
-            list-style: none;
-            margin-top: 1rem;
-        }
-        .lux-modal-list-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.5rem; /* Reduced margin */
-            color: #4a5568;
-            font-size: 0.95rem; /* Reduced font size */
-        }
-        .lux-modal-list-icon {
-            color: #d97706;
-            margin-right: 0.75rem;
-            font-size: 1rem; /* Reduced icon size */
-        }
-        .lux-modal-btn {
-            width: 100%;
-            background-color: #d97706;
-            color: white;
-            padding: 0.75rem; /* Reduced padding */
-            border-radius: 9999px;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            font-size: 1rem; /* Reduced font size */
-        }
-        .lux-modal-btn:hover {
-            background-color: #b45309;
         }
         .close-btn-lux {
             background-color: rgba(255, 255, 255, 0.8);
@@ -432,7 +243,8 @@
             max-height: 90vh;
             overflow-y: auto;
         }
-        /* New CSS for Carousel */
+        
+        /* Carousel */
         .carousel-container {
             position: relative;
             width: 100%;
@@ -488,7 +300,6 @@
 
     <div id="login-page">
         <div class="text-center text-white bg-black bg-opacity-50 p-6 rounded-xl shadow-2xl animate-fade-in login-box">
-            
             <h1 class="title-font text-3xl font-bold mb-2">Penginapan Kawan Lama Mardingding</h1>
             <p class="text-sm mb-4 font-light">Selamat datang di penginapan kawan lama</p>
             <div class="mb-4">
@@ -538,8 +349,8 @@
             <div class="container mx-auto px-4 text-center text-white relative z-10">
                 <img src="bg.jpg" alt="Penginapan Kawan Lama" class="h-28 w-28 rounded-full mx-auto mb-6 border-4 border-white shadow-xl">
                 <h1 class="title-font text-4xl md:text-5xl font-bold mb-6 animate-fade-in">Penginapan Kawan Lama Mardingding</h1>
-                <p class="text-xl md:text-3xl mb-8 max-w-3xl mx-auto animate-fade-in delay-100 font-light">Tempat menginap eksklusif dengan pemandangan perdesaan yang asri</p>
-                <a href="#rooms" class="inline-block bg-amber-700 hover:bg-amber-800 text-white font-semibold py-4 px-10 rounded-full transition duration-300 animate-fade-in delay-200 text-lg shadow-lg">
+                <p class="text-xl md:text-3xl mb-8 max-w-3xl mx-auto animate-fade-in font-light">Tempat menginap eksklusif dengan pemandangan perdesaan yang asri</p>
+                <a href="#rooms" class="inline-block bg-amber-700 hover:bg-amber-800 text-white font-semibold py-4 px-10 rounded-full transition duration-300 animate-fade-in text-lg shadow-lg">
                     Lihat Kamar Kami
                 </a>
             </div>
@@ -558,14 +369,9 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                     <div class="room-card group bg-white rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 transform hover:scale-105" data-room="standard">
                         <div class="relative w-full h-80 carousel-container">
-                            <div class="carousel-track" data-images="standar1.png,standar2.jpg,standar3.jpg">
-                            </div>
-                            <button class="carousel-button prev-btn" aria-label="Previous Slide">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="carousel-button next-btn" aria-label="Next Slide">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
+                            <div class="carousel-track" data-images="standar1.png,standar2.jpg,standar3.jpg"></div>
+                            <button class="carousel-button prev-btn" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
+                            <button class="carousel-button next-btn" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
                         </div>
                         <div class="p-8 bg-white">
                             <div class="flex items-center justify-between mb-2">
@@ -574,32 +380,20 @@
                             </div>
                             <p class="text-gray-600 text-sm mb-4">Per malam</p>
                             <ul class="text-gray-500 text-sm space-y-2 mb-6">
-                                <li class="flex items-center">
-                                    <i class="fas fa-fan text-amber-600 mr-2"></i> Kipas angin
-                                </li>
-                                <li class="flex items-center">
-                                    <i class="fas fa-shower text-amber-600 mr-2"></i> Kamar mandi dalam
-                                </li>
-                                <li class="flex items-center">
-                                    <i class="fas fa-bed text-amber-600 mr-2"></i> Tempat tidur nyaman
-                                </li>
+                                <li class="flex items-center"><i class="fas fa-fan text-amber-600 mr-2"></i> Kipas angin</li>
+                                <li class="flex items-center"><i class="fas fa-shower text-amber-600 mr-2"></i> Kamar mandi dalam</li>
+                                <li class="flex items-center"><i class="fas fa-bed text-amber-600 mr-2"></i> Tempat tidur nyaman</li>
                             </ul>
                             <button onclick="openModal('standard')" class="w-full bg-gray-100 hover:bg-amber-700 hover:text-white text-gray-800 py-3 px-6 rounded-full transition duration-300 font-semibold shadow-md">
                                 Lihat Detail
                             </button>
                         </div>
                     </div>
-
                     <div class="room-card group bg-white rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 transform hover:scale-105" data-room="superior">
                         <div class="relative w-full h-80 carousel-container">
-                            <div class="carousel-track" data-images="superior1.png,superior2.jpg,superior3.jpg">
-                            </div>
-                            <button class="carousel-button prev-btn" aria-label="Previous Slide">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="carousel-button next-btn" aria-label="Next Slide">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
+                            <div class="carousel-track" data-images="superior1.png,superior2.jpg,superior3.jpg"></div>
+                            <button class="carousel-button prev-btn" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
+                            <button class="carousel-button next-btn" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
                         </div>
                         <div class="p-8 bg-white">
                             <div class="flex items-center justify-between mb-2">
@@ -608,32 +402,20 @@
                             </div>
                             <p class="text-gray-600 text-sm mb-4">Per malam</p>
                             <ul class="text-gray-500 text-sm space-y-2 mb-6">
-                                <li class="flex items-center">
-                                    <i class="fas fa-tv text-amber-600 mr-2"></i> Televisi
-                                </li>
-                                <li class="flex items-center">
-                                    <i class="fas fa-shower text-amber-600 mr-2"></i> Kamar mandi dalam
-                                </li>
-                                <li class="flex items-center">
-                                    <i class="fas fa-bed text-amber-600 mr-2"></i> Tempat tidur nyaman
-                                </li>
+                                <li class="flex items-center"><i class="fas fa-tv text-amber-600 mr-2"></i> Televisi</li>
+                                <li class="flex items-center"><i class="fas fa-shower text-amber-600 mr-2"></i> Kamar mandi dalam</li>
+                                <li class="flex items-center"><i class="fas fa-bed text-amber-600 mr-2"></i> Tempat tidur nyaman</li>
                             </ul>
                             <button onclick="openModal('superior')" class="w-full bg-gray-100 hover:bg-amber-700 hover:text-white text-gray-800 py-3 px-6 rounded-full transition duration-300 font-semibold shadow-md">
                                 Lihat Detail
                             </button>
                         </div>
                     </div>
-
                     <div class="room-card group bg-white rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 transform hover:scale-105" data-room="deluxe">
                         <div class="relative w-full h-80 carousel-container">
-                            <div class="carousel-track" data-images="deluxe1.png,deluxe2.jpg,deluxe3.jpg">
-                            </div>
-                            <button class="carousel-button prev-btn" aria-label="Previous Slide">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="carousel-button next-btn" aria-label="Next Slide">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
+                            <div class="carousel-track" data-images="deluxe1.png,deluxe2.jpg,deluxe3.jpg"></div>
+                            <button class="carousel-button prev-btn" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
+                            <button class="carousel-button next-btn" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
                         </div>
                         <div class="p-8 bg-white">
                             <div class="flex items-center justify-between mb-2">
@@ -642,32 +424,20 @@
                             </div>
                             <p class="text-gray-600 text-sm mb-4">Per malam</p>
                             <ul class="text-gray-500 text-sm space-y-2 mb-6">
-                                <li class="flex items-center">
-                                    <i class="fas fa-tv text-amber-600 mr-2"></i> Televisi
-                                </li>
-                                <li class="flex items-center">
-                                    <i class="fas fa-car-side text-amber-600 mr-2"></i> Garasi pribadi
-                                </li>
-                                <li class="flex items-center">
-                                    <i class="fas fa-chair text-amber-600 mr-2"></i> Meja kerja
-                                </li>
+                                <li class="flex items-center"><i class="fas fa-tv text-amber-600 mr-2"></i> Televisi</li>
+                                <li class="flex items-center"><i class="fas fa-car-side text-amber-600 mr-2"></i> Garasi pribadi</li>
+                                <li class="flex items-center"><i class="fas fa-chair text-amber-600 mr-2"></i> Meja kerja</li>
                             </ul>
                             <button onclick="openModal('deluxe')" class="w-full bg-gray-100 hover:bg-amber-700 hover:text-white text-gray-800 py-3 px-6 rounded-full transition duration-300 font-semibold shadow-md">
                                 Lihat Detail
                             </button>
                         </div>
                     </div>
-                    
                     <div class="room-card group bg-white rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 transform hover:scale-105" data-room="vip-b">
                         <div class="relative w-full h-80 carousel-container">
-                            <div class="carousel-track" data-images="vip1.png,vip2.jpg,vip3.jpg">
-                            </div>
-                            <button class="carousel-button prev-btn" aria-label="Previous Slide">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="carousel-button next-btn" aria-label="Next Slide">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
+                            <div class="carousel-track" data-images="vip1.png,vip2.jpg,vip3.jpg"></div>
+                            <button class="carousel-button prev-btn" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
+                            <button class="carousel-button next-btn" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
                         </div>
                         <div class="p-8 bg-white">
                             <div class="flex flex-col items-start justify-between mb-2">
@@ -676,32 +446,20 @@
                             </div>
                             <p class="text-gray-600 text-sm mb-4">Per malam</p>
                             <ul class="text-gray-500 text-sm space-y-2 mb-6">
-                                <li class="flex items-center">
-                                    <i class="fas fa-wind text-amber-600 mr-2"></i> AC
-                                </li>
-                                <li class="flex items-center">
-                                    <i class="fas fa-toilet text-amber-600 mr-2"></i> Perlengkapan mandi
-                                </li>
-                                <li class="flex items-center">
-                                    <i class="fas fa-bottle-water text-amber-600 mr-2"></i> Air mineral
-                                </li>
+                                <li class="flex items-center"><i class="fas fa-wind text-amber-600 mr-2"></i> AC</li>
+                                <li class="flex items-center"><i class="fas fa-toilet text-amber-600 mr-2"></i> Perlengkapan mandi</li>
+                                <li class="flex items-center"><i class="fas fa-bottle-water text-amber-600 mr-2"></i> Air mineral</li>
                             </ul>
                             <button onclick="openModal('vip-b')" class="w-full bg-gray-100 hover:bg-amber-700 hover:text-white text-gray-800 py-3 px-6 rounded-full transition duration-300 font-semibold shadow-md">
                                 Lihat Detail
                             </button>
                         </div>
                     </div>
-
                     <div class="room-card group bg-white rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 transform hover:scale-105" data-room="vip-a">
                         <div class="relative w-full h-80 carousel-container">
-                            <div class="carousel-track" data-images="vvip1.png,vvip2.jpg,vvip3.jpg">
-                            </div>
-                            <button class="carousel-button prev-btn" aria-label="Previous Slide">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="carousel-button next-btn" aria-label="Next Slide">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
+                            <div class="carousel-track" data-images="vvip1.png,vvip2.jpg,vvip3.jpg"></div>
+                            <button class="carousel-button prev-btn" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
+                            <button class="carousel-button next-btn" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
                         </div>
                         <div class="p-8 bg-white">
                             <div class="flex flex-col items-start justify-between mb-2">
@@ -710,32 +468,20 @@
                             </div>
                             <p class="text-gray-600 text-sm mb-4">Per malam</p>
                             <ul class="text-gray-500 text-sm space-y-2 mb-6">
-                                <li class="flex items-center">
-                                    <i class="fas fa-expand text-amber-600 mr-2"></i> Kamar lebih luas
-                                </li>
-                                <li class="flex items-center">
-                                    <i class="fas fa-wind text-amber-600 mr-2"></i> AC
-                                </li>
-                                <li class="flex items-center">
-                                    <i class="fas fa-car-side text-amber-600 mr-2"></i> Garasi pribadi
-                                </li>
+                                <li class="flex items-center"><i class="fas fa-expand text-amber-600 mr-2"></i> Kamar lebih luas</li>
+                                <li class="flex items-center"><i class="fas fa-wind text-amber-600 mr-2"></i> AC</li>
+                                <li class="flex items-center"><i class="fas fa-car-side text-amber-600 mr-2"></i> Garasi pribadi</li>
                             </ul>
                             <button onclick="openModal('vip-a')" class="w-full bg-gray-100 hover:bg-amber-700 hover:text-white text-gray-800 py-3 px-6 rounded-full transition duration-300 font-semibold shadow-md">
                                 Lihat Detail
                             </button>
                         </div>
                     </div>
-
                     <div class="room-card group bg-white rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 transform hover:scale-105" data-room="karaoke">
                         <div class="relative w-full h-80 carousel-container">
-                            <div class="carousel-track" data-images="karoke1.jpg,karoke2.jpg,karoke3.jpg">
-                            </div>
-                            <button class="carousel-button prev-btn" aria-label="Previous Slide">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="carousel-button next-btn" aria-label="Next Slide">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
+                            <div class="carousel-track" data-images="karoke1.jpg,karoke2.jpg,karoke3.jpg"></div>
+                            <button class="carousel-button prev-btn" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
+                            <button class="carousel-button next-btn" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
                         </div>
                         <div class="p-8 bg-white">
                             <div class="flex flex-col items-start justify-between mb-2">
@@ -744,15 +490,9 @@
                             </div>
                             <p class="text-gray-600 text-sm mb-4">Per jam</p>
                             <ul class="text-gray-500 text-sm space-y-2 mb-6">
-                                <li class="flex items-center">
-                                    <i class="fas fa-microphone text-amber-600 mr-2"></i> Sistem karaoke lengkap
-                                </li>
-                                <li class="flex items-center">
-                                    <i class="fas fa-music text-amber-600 mr-2"></i> Ribuan lagu pilihan
-                                </li>
-                                <li class="flex items-center">
-                                    <i class="fas fa-couch text-amber-600 mr-2"></i> Sofa nyaman
-                                </li>
+                                <li class="flex items-center"><i class="fas fa-microphone text-amber-600 mr-2"></i> Sistem karaoke lengkap</li>
+                                <li class="flex items-center"><i class="fas fa-music text-amber-600 mr-2"></i> Ribuan lagu pilihan</li>
+                                <li class="flex items-center"><i class="fas fa-couch text-amber-600 mr-2"></i> Sofa nyaman</li>
                             </ul>
                             <button onclick="openModal('karaoke')" class="w-full bg-gray-100 hover:bg-amber-700 hover:text-white text-gray-800 py-3 px-6 rounded-full transition duration-300 font-semibold shadow-md">
                                 Lihat Detail
@@ -767,9 +507,7 @@
             <div class="container mx-auto px-4">
                 <div class="flex flex-col md:flex-row items-center">
                     <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
-                        <img src="tentang.png"
-                              alt="Penginapan Kawan Lama"
-                              class="rounded-2xl shadow-2xl w-full h-auto">
+                        <img src="tentang.png" alt="Penginapan Kawan Lama" class="rounded-2xl shadow-2xl w-full h-auto">
                     </div>
                     <div class="md:w-1/2">
                         <h2 class="title-font text-4xl font-bold text-gray-900 mb-6">Tentang Penginapan Kawan Lama</h2>
@@ -805,13 +543,10 @@
                     <div class="w-24 h-1 bg-amber-700 mx-auto rounded-full"></div>
                     <p class="text-gray-600 mt-4 max-w-2xl mx-auto text-lg">Komitmen kami untuk memberikan pelayanan terbaik kepada setiap tamu</p>
                 </div>
-
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                     <div class="vm-card bg-white p-10 rounded-2xl shadow-xl">
                         <div class="flex items-center mb-4">
-                            <div class="bg-amber-100 p-4 rounded-full mr-4 shadow-md">
-                                <i class="fas fa-eye text-2xl text-amber-700"></i>
-                            </div>
+                            <div class="bg-amber-100 p-4 rounded-full mr-4 shadow-md"><i class="fas fa-eye text-2xl text-amber-700"></i></div>
                             <h3 class="title-font text-3xl font-bold text-gray-900">Visi</h3>
                         </div>
                         <p class="text-gray-600 text-lg">
@@ -819,31 +554,16 @@
                             aman, dan berkesan bagi setiap tamu.
                         </p>
                     </div>
-
                     <div class="vm-card bg-white p-10 rounded-2xl shadow-xl">
                         <div class="flex items-center mb-4">
-                            <div class="bg-amber-100 p-4 rounded-full mr-4 shadow-md">
-                                <i class="fas fa-rocket text-2xl text-amber-700"></i>
-                            </div>
+                            <div class="bg-amber-100 p-4 rounded-full mr-4 shadow-md"><i class="fas fa-rocket text-2xl text-amber-700"></i></div>
                             <h3 class="title-font text-3xl font-bold text-gray-900">Misi</h3>
                         </div>
                         <ul class="space-y-4 text-gray-600 text-lg">
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-amber-700 mt-1 mr-3"></i>
-                                <span>Menyediakan fasilitas yang lengkap dan nyaman</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-amber-700 mt-1 mr-3"></i>
-                                <span>Memberikan pelayanan terbaik dengan staf yang profesional</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-amber-700 mt-1 mr-3"></i>
-                                <span>Menjaga kebersihan dan kenyamanan lingkungan penginapan</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-amber-700 mt-1 mr-3"></i>
-                                <span>Mengembangkan inovasi untuk meningkatkan kualitas pelayanan</span>
-                            </li>
+                            <li class="flex items-start"><i class="fas fa-check text-amber-700 mt-1 mr-3"></i><span>Menyediakan fasilitas yang lengkap dan nyaman</span></li>
+                            <li class="flex items-start"><i class="fas fa-check text-amber-700 mt-1 mr-3"></i><span>Memberikan pelayanan terbaik dengan staf yang profesional</span></li>
+                            <li class="flex items-start"><i class="fas fa-check text-amber-700 mt-1 mr-3"></i><span>Menjaga kebersihan dan kenyamanan lingkungan penginapan</span></li>
+                            <li class="flex items-start"><i class="fas fa-check text-amber-700 mt-1 mr-3"></i><span>Mengembangkan inovasi untuk meningkatkan kualitas pelayanan</span></li>
                         </ul>
                     </div>
                 </div>
@@ -857,7 +577,6 @@
                     <div class="w-24 h-1 bg-amber-700 mx-auto rounded-full"></div>
                     <p class="text-gray-600 mt-4 max-w-2xl mx-auto text-lg">Kami siap membantu Anda untuk informasi lebih lanjut atau pemesanan kamar</p>
                 </div>
-
                 <div class="flex flex-col md:flex-row gap-10">
                     <div class="md:w-1/2">
                         <div class="bg-white p-10 rounded-2xl shadow-xl h-full">
@@ -897,25 +616,14 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="md:w-1/2">
                         <div class="bg-white p-10 rounded-2xl shadow-xl h-full">
                             <h3 class="title-font text-3xl font-bold mb-6 text-gray-900">Sosial Media</h3>
                             <p class="text-gray-600 mb-6 text-lg">Ikuti kami di media sosial untuk mendapatkan informasi terbaru dan penawaran spesial.</p>
-
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                <a href="https://www.facebook.com/kawanlamamardingding" target="_blank" class="social-icon bg-blue-600 hover:bg-blue-700 text-white p-6 rounded-xl text-center transition shadow-md">
-                                    <i class="fab fa-facebook-f text-3xl mb-2"></i>
-                                    <p class="font-medium text-lg">Facebook</p>
-                                </a>
-                                <a href="https://www.instagram.com/penginapankawanlama?igsh=MWNwMXhucmI4eHc1Ng==" target="_blank" class="social-icon bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white p-6 rounded-xl text-center transition shadow-md">
-                                    <i class="fab fa-instagram text-3xl mb-2"></i>
-                                    <p class="font-medium text-lg">Instagram</p>
-                                </a>
-                                <a href="https://www.tiktok.com/@penginapankawanlama?_t=ZS-8z103Q1uPvG&_r=1" target="_blank" class="social-icon bg-gray-800 hover:bg-gray-900 text-white p-6 rounded-xl text-center transition shadow-md">
-                                    <i class="fab fa-tiktok text-3xl mb-2"></i>
-                                    <p class="font-medium text-lg">TikTok</p>
-                                </a>
+                                <a href="https://www.facebook.com/kawanlamamardingding" target="_blank" class="social-icon bg-blue-600 hover:bg-blue-700 text-white p-6 rounded-xl text-center transition shadow-md"><i class="fab fa-facebook-f text-3xl mb-2"></i><p class="font-medium text-lg">Facebook</p></a>
+                                <a href="https://www.instagram.com/penginapankawanlama?igsh=MWNwMXhucmI4eHc1Ng==" target="_blank" class="social-icon bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white p-6 rounded-xl text-center transition shadow-md"><i class="fab fa-instagram text-3xl mb-2"></i><p class="font-medium text-lg">Instagram</p></a>
+                                <a href="https://www.tiktok.com/@penginapankawanlama?_t=ZS-8z103Q1uPvG&_r=1" target="_blank" class="social-icon bg-gray-800 hover:bg-gray-900 text-white p-6 rounded-xl text-center transition shadow-md"><i class="fab fa-tiktok text-3xl mb-2"></i><p class="font-medium text-lg">TikTok</p></a>
                             </div>
                         </div>
                     </div>
@@ -946,40 +654,14 @@
             <div class="lux-modal-content">
                 <div class="lux-modal-image-container relative">
                     <img src="standar1.png" alt="Standard Room" class="lux-modal-image">
-                    <button onclick="closeModal('standard')" class="close-btn-lux absolute top-4 right-4 text-gray-800">
-                        <i class="fas fa-times text-xl"></i>
-                    </button>
+                    <button onclick="closeModal('standard')" class="close-btn-lux absolute top-4 right-4 text-gray-800"><i class="fas fa-times text-xl"></i></button>
                 </div>
                 <div class="lux-modal-details-container">
-                    <h2 class="lux-modal-title title-font">Kamar Standar</h2>
-                    <p class="lux-modal-price font-bold">Rp 70.000/malam</p>
-                    <div class="mb-6">
-                        <h3 class="lux-modal-subtitle">Deskripsi:</h3>
-                        <p class="lux-modal-text">
-                            Kamar Standar kami menawarkan kenyamanan dasar dengan fasilitas lengkap untuk menginap singkat. 
-                            Cocok untuk wisatawan yang mencari tempat menginap yang nyaman dengan harga terjangkau.
-                        </p>
-                    </div>
-                    <div class="mb-8">
-                        <h3 class="lux-modal-subtitle">Fasilitas:</h3>
-                        <ul class="lux-modal-list grid grid-cols-1 sm:grid-cols-2 gap-y-3">
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-fan lux-modal-list-icon"></i>
-                                <span>Kipas angin</span>
-                            </li>
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-shower lux-modal-list-icon"></i>
-                                <span>Kamar mandi di dalam</span>
-                            </li>
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-bed lux-modal-list-icon"></i>
-                                <span>Tempat tidur nyaman</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <button onclick="showBookingForm('standard', 70000)" class="lux-modal-btn font-semibold">
-                        Pesan Sekarang
-                    </button>
+                    <h2 class="title-font text-2xl font-bold mb-2">Kamar Standar</h2>
+                    <p class="text-xl font-bold text-amber-700 mb-6">Rp 70.000/malam</p>
+                    <div class="mb-6"><h3 class="font-semibold text-gray-800 mb-2">Deskripsi:</h3><p class="text-gray-600 text-sm">Kamar Standar kami menawarkan kenyamanan dasar dengan fasilitas lengkap untuk menginap singkat. Cocok untuk wisatawan yang mencari tempat menginap yang nyaman dengan harga terjangkau.</p></div>
+                    <div class="mb-8"><h3 class="font-semibold text-gray-800 mb-2">Fasilitas:</h3><ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 text-gray-600 text-sm"><li class="flex items-center"><i class="fas fa-fan text-amber-700 mr-2"></i> Kipas angin</li><li class="flex items-center"><i class="fas fa-shower text-amber-700 mr-2"></i> Kamar mandi di dalam</li><li class="flex items-center"><i class="fas fa-bed text-amber-700 mr-2"></i> Tempat tidur nyaman</li></ul></div>
+                    <button onclick="showBookingForm('standard', 70000)" class="w-full bg-amber-700 hover:bg-amber-800 text-white py-3 px-6 rounded-full font-semibold transition shadow-lg">Pesan Sekarang</button>
                 </div>
             </div>
         </div>
@@ -990,44 +672,14 @@
             <div class="lux-modal-content">
                 <div class="lux-modal-image-container relative">
                     <img src="superior1.png" alt="Superior Room" class="lux-modal-image">
-                    <button onclick="closeModal('superior')" class="close-btn-lux absolute top-4 right-4 text-gray-800">
-                        <i class="fas fa-times text-xl"></i>
-                    </button>
+                    <button onclick="closeModal('superior')" class="close-btn-lux absolute top-4 right-4 text-gray-800"><i class="fas fa-times text-xl"></i></button>
                 </div>
                 <div class="lux-modal-details-container">
-                    <h2 class="lux-modal-title title-font">Kamar Superior</h2>
-                    <p class="lux-modal-price font-bold">Rp 100.000/malam</p>
-                    <div class="mb-6">
-                        <h3 class="lux-modal-subtitle">Deskripsi:</h3>
-                        <p class="lux-modal-text">
-                        Kamar Superior kami menawarkan kenyamanan dasar dengan fasilitas lengkap untuk menginap singkat. 
-                        Cocok untuk wisatawan yang mencari tempat menginap yang nyaman dengan harga terjangkau.
-                        </p>
-                    </div>
-                    <div class="mb-8">
-                        <h3 class="lux-modal-subtitle">Fasilitas:</h3>
-                        <ul class="lux-modal-list grid grid-cols-1 sm:grid-cols-2 gap-y-3">
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-fan lux-modal-list-icon"></i>
-                                <span>Kipas angin</span>
-                            </li>
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-shower lux-modal-list-icon"></i>
-                                <span>Kamar mandi di dalam</span>
-                            </li>
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-bed lux-modal-list-icon"></i>
-                                <span>Tempat tidur nyaman</span>
-                            </li>
-                             <li class="lux-modal-list-item">
-                                <i class="fas fa-tv lux-modal-list-icon"></i>
-                                <span>TV</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <button onclick="showBookingForm('superior', 100000)" class="lux-modal-btn font-semibold">
-                        Pesan Sekarang
-                    </button>
+                    <h2 class="title-font text-2xl font-bold mb-2">Kamar Superior</h2>
+                    <p class="text-xl font-bold text-amber-700 mb-6">Rp 100.000/malam</p>
+                    <div class="mb-6"><h3 class="font-semibold text-gray-800 mb-2">Deskripsi:</h3><p class="text-gray-600 text-sm">Kamar Superior kami menawarkan kenyamanan dasar dengan fasilitas lengkap untuk menginap singkat. Cocok untuk wisatawan yang mencari tempat menginap yang nyaman dengan harga terjangkau.</p></div>
+                    <div class="mb-8"><h3 class="font-semibold text-gray-800 mb-2">Fasilitas:</h3><ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 text-gray-600 text-sm"><li class="flex items-center"><i class="fas fa-fan text-amber-700 mr-2"></i> Kipas angin</li><li class="flex items-center"><i class="fas fa-shower text-amber-700 mr-2"></i> Kamar mandi di dalam</li><li class="flex items-center"><i class="fas fa-bed text-amber-700 mr-2"></i> Tempat tidur nyaman</li><li class="flex items-center"><i class="fas fa-tv text-amber-700 mr-2"></i> TV</li></ul></div>
+                    <button onclick="showBookingForm('superior', 100000)" class="w-full bg-amber-700 hover:bg-amber-800 text-white py-3 px-6 rounded-full font-semibold transition shadow-lg">Pesan Sekarang</button>
                 </div>
             </div>
         </div>
@@ -1038,48 +690,14 @@
             <div class="lux-modal-content">
                 <div class="lux-modal-image-container relative">
                     <img src="deluxe1.png" alt="Deluxe Room" class="lux-modal-image">
-                    <button onclick="closeModal('deluxe')" class="close-btn-lux absolute top-4 right-4 text-gray-800">
-                        <i class="fas fa-times text-xl"></i>
-                    </button>
+                    <button onclick="closeModal('deluxe')" class="close-btn-lux absolute top-4 right-4 text-gray-800"><i class="fas fa-times text-xl"></i></button>
                 </div>
                 <div class="lux-modal-details-container">
-                    <h2 class="lux-modal-title title-font">Kamar Deluxe</h2>
-                    <p class="lux-modal-price font-bold">Rp 130.000/malam</p>
-                    <div class="mb-6">
-                        <h3 class="lux-modal-subtitle">Deskripsi:</h3>
-                        <p class="lux-modal-text">
-                            Kamar Deluxe kami menawarkan kenyamanan ekstra dengan ruangan yang lebih luas dan fasilitas tambahan. 
-                            Pilihan tepat untuk keluarga kecil atau pasangan yang menginginkan kenyamanan lebih.
-                        </p>
-                    </div>
-                    <div class="mb-8">
-                        <h3 class="lux-modal-subtitle">Fasilitas:</h3>
-                        <ul class="lux-modal-list grid grid-cols-1 sm:grid-cols-2 gap-y-3">
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-fan lux-modal-list-icon"></i>
-                                <span>Kipas angin</span>
-                            </li>
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-shower lux-modal-list-icon"></i>
-                                <span>Kamar mandi di dalam</span>
-                            </li>
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-tv lux-modal-list-icon"></i>
-                                <span>TV</span>
-                            </li>
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-car-side lux-modal-list-icon"></i>
-                                <span>Garasi</span>
-                            </li>
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-chair lux-modal-list-icon"></i>
-                                <span>Meja kerja</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <button onclick="showBookingForm('deluxe', 130000)" class="lux-modal-btn font-semibold">
-                        Pesan Sekarang
-                    </button>
+                    <h2 class="title-font text-2xl font-bold mb-2">Kamar Deluxe</h2>
+                    <p class="text-xl font-bold text-amber-700 mb-6">Rp 130.000/malam</p>
+                    <div class="mb-6"><h3 class="font-semibold text-gray-800 mb-2">Deskripsi:</h3><p class="text-gray-600 text-sm">Kamar Deluxe kami menawarkan kenyamanan ekstra dengan ruangan yang lebih luas dan fasilitas tambahan. Pilihan tepat untuk keluarga kecil atau pasangan yang menginginkan kenyamanan lebih.</p></div>
+                    <div class="mb-8"><h3 class="font-semibold text-gray-800 mb-2">Fasilitas:</h3><ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 text-gray-600 text-sm"><li class="flex items-center"><i class="fas fa-fan text-amber-700 mr-2"></i> Kipas angin</li><li class="flex items-center"><i class="fas fa-shower text-amber-700 mr-2"></i> Kamar mandi di dalam</li><li class="flex items-center"><i class="fas fa-tv text-amber-700 mr-2"></i> TV</li><li class="flex items-center"><i class="fas fa-car-side text-amber-700 mr-2"></i> Garasi</li><li class="flex items-center"><i class="fas fa-chair text-amber-700 mr-2"></i> Meja kerja</li></ul></div>
+                    <button onclick="showBookingForm('deluxe', 130000)" class="w-full bg-amber-700 hover:bg-amber-800 text-white py-3 px-6 rounded-full font-semibold transition shadow-lg">Pesan Sekarang</button>
                 </div>
             </div>
         </div>
@@ -1090,56 +708,14 @@
             <div class="lux-modal-content">
                 <div class="lux-modal-image-container relative">
                     <img src="vip1.png" alt="VIP B Room" class="lux-modal-image">
-                    <button onclick="closeModal('vip-b')" class="close-btn-lux absolute top-4 right-4 text-gray-800">
-                        <i class="fas fa-times text-xl"></i>
-                    </button>
+                    <button onclick="closeModal('vip-b')" class="close-btn-lux absolute top-4 right-4 text-gray-800"><i class="fas fa-times text-xl"></i></button>
                 </div>
                 <div class="lux-modal-details-container">
-                    <h2 class="lux-modal-title title-font">Kamar VIP B</h2>
-                    <p class="lux-modal-price font-bold">Rp 200.000/malam</p>
-                    <div class="mb-6">
-                        <h3 class="lux-modal-subtitle">Deskripsi:</h3>
-                        <p class="lux-modal-text">
-                            Kamar VIP B kami dirancang untuk memberikan pengalaman menginap premium dengan fasilitas lengkap dan kenyamanan maksimal. 
-                            Ruangan yang luas dengan dekorasi elegan akan membuat Anda merasa seperti di rumah sendiri.
-                        </p>
-                    </div>
-                    <div class="mb-8">
-                        <h3 class="lux-modal-subtitle">Fasilitas:</h3>
-                        <ul class="lux-modal-list grid grid-cols-1 sm:grid-cols-2 gap-y-3">
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-wind lux-modal-list-icon"></i>
-                                <span>AC</span>
-                            </li>
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-shower lux-modal-list-icon"></i>
-                                <span>Kamar mandi di dalam</span>
-                            </li>
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-tv lux-modal-list-icon"></i>
-                                <span>TV</span>
-                            </li>
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-car-side lux-modal-list-icon"></i>
-                                <span>Garasi</span>
-                            </li>
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-chair lux-modal-list-icon"></i>
-                                <span>Meja kerja</span>
-                            </li>
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-bottle-water lux-modal-list-icon"></i>
-                                <span>Mineral Water</span>
-                            </li>
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-soap lux-modal-list-icon"></i>
-                                <span>Sabun Dan Sikat Gigi</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <button onclick="showBookingForm('vip-b', 200000)" class="lux-modal-btn font-semibold">
-                        Pesan Sekarang
-                    </button>
+                    <h2 class="title-font text-2xl font-bold mb-2">Kamar VIP B</h2>
+                    <p class="text-xl font-bold text-amber-700 mb-6">Rp 200.000/malam</p>
+                    <div class="mb-6"><h3 class="font-semibold text-gray-800 mb-2">Deskripsi:</h3><p class="text-gray-600 text-sm">Kamar VIP B kami dirancang untuk memberikan pengalaman menginap premium dengan fasilitas lengkap dan kenyamanan maksimal. Ruangan yang luas dengan dekorasi elegan akan membuat Anda merasa seperti di rumah sendiri.</p></div>
+                    <div class="mb-8"><h3 class="font-semibold text-gray-800 mb-2">Fasilitas:</h3><ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 text-gray-600 text-sm"><li class="flex items-center"><i class="fas fa-wind text-amber-700 mr-2"></i> AC</li><li class="flex items-center"><i class="fas fa-shower text-amber-700 mr-2"></i> Kamar mandi di dalam</li><li class="flex items-center"><i class="fas fa-tv text-amber-700 mr-2"></i> TV</li><li class="flex items-center"><i class="fas fa-car-side text-amber-700 mr-2"></i> Garasi</li><li class="flex items-center"><i class="fas fa-chair text-amber-700 mr-2"></i> Meja kerja</li><li class="flex items-center"><i class="fas fa-bottle-water text-amber-700 mr-2"></i> Mineral Water</li><li class="flex items-center"><i class="fas fa-soap text-amber-700 mr-2"></i> Sabun Dan Sikat Gigi</li></ul></div>
+                    <button onclick="showBookingForm('vip-b', 200000)" class="w-full bg-amber-700 hover:bg-amber-800 text-white py-3 px-6 rounded-full font-semibold transition shadow-lg">Pesan Sekarang</button>
                 </div>
             </div>
         </div>
@@ -1150,60 +726,14 @@
             <div class="lux-modal-content">
                 <div class="lux-modal-image-container relative">
                     <img src="vvip1.png" alt="VIP A Room" class="lux-modal-image">
-                    <button onclick="closeModal('vip-a')" class="close-btn-lux absolute top-4 right-4 text-gray-800">
-                        <i class="fas fa-times text-xl"></i>
-                    </button>
+                    <button onclick="closeModal('vip-a')" class="close-btn-lux absolute top-4 right-4 text-gray-800"><i class="fas fa-times text-xl"></i></button>
                 </div>
                 <div class="lux-modal-details-container">
-                    <h2 class="lux-modal-title title-font">Kamar VIP A</h2>
-                    <p class="lux-modal-price font-bold">Rp 250.000/malam</p>
-                    <div class="mb-6">
-                        <h3 class="lux-modal-subtitle">Deskripsi:</h3>
-                        <p class="lux-modal-text">
-                            Kamar VIP A kami adalah pilihan terbaik untuk Anda yang menginginkan kemewahan dan kenyamanan ekstra. 
-                            Dengan ruangan yang sangat luas dan fasilitas premium, kami menjamin pengalaman menginap yang tak terlupakan.
-                        </p>
-                    </div>
-                    <div class="mb-8">
-                        <h3 class="lux-modal-subtitle">Fasilitas:</h3>
-                        <ul class="lux-modal-list grid grid-cols-1 sm:grid-cols-2 gap-y-3">
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-wind lux-modal-list-icon"></i>
-                                <span>AC</span>
-                            </li>
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-expand lux-modal-list-icon"></i>
-                                <span>Kamar lebih luas</span>
-                            </li>
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-shower lux-modal-list-icon"></i>
-                                <span>Kamar mandi di dalam</span>
-                            </li>
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-tv lux-modal-list-icon"></i>
-                                <span>TV</span>
-                            </li>
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-chair lux-modal-list-icon"></i>
-                                <span>Meja kerja</span>
-                            </li>
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-car-side lux-modal-list-icon"></i>
-                                <span>Garasi</span>
-                            </li>
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-bottle-water lux-modal-list-icon"></i>
-                                <span>Mineral Water</span>
-                            </li>
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-soap lux-modal-list-icon"></i>
-                                <span>Sabun Dan Sikat Gigi</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <button onclick="showBookingForm('vip-a', 250000)" class="lux-modal-btn font-semibold">
-                        Pesan Sekarang
-                    </button>
+                    <h2 class="title-font text-2xl font-bold mb-2">Kamar VIP A</h2>
+                    <p class="text-xl font-bold text-amber-700 mb-6">Rp 250.000/malam</p>
+                    <div class="mb-6"><h3 class="font-semibold text-gray-800 mb-2">Deskripsi:</h3><p class="text-gray-600 text-sm">Kamar VIP A kami adalah pilihan terbaik untuk Anda yang menginginkan kemewahan dan kenyamanan ekstra. Dengan ruangan yang sangat luas dan fasilitas premium, kami menjamin pengalaman menginap yang tak terlupakan.</p></div>
+                    <div class="mb-8"><h3 class="font-semibold text-gray-800 mb-2">Fasilitas:</h3><ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 text-gray-600 text-sm"><li class="flex items-center"><i class="fas fa-wind text-amber-700 mr-2"></i> AC</li><li class="flex items-center"><i class="fas fa-expand text-amber-700 mr-2"></i> Kamar lebih luas</li><li class="flex items-center"><i class="fas fa-shower text-amber-700 mr-2"></i> Kamar mandi di dalam</li><li class="flex items-center"><i class="fas fa-tv text-amber-700 mr-2"></i> TV</li><li class="flex items-center"><i class="fas fa-chair text-amber-700 mr-2"></i> Meja kerja</li><li class="flex items-center"><i class="fas fa-car-side text-amber-700 mr-2"></i> Garasi</li><li class="flex items-center"><i class="fas fa-bottle-water text-amber-700 mr-2"></i> Mineral Water</li><li class="flex items-center"><i class="fas fa-soap text-amber-700 mr-2"></i> Sabun Dan Sikat Gigi</li></ul></div>
+                    <button onclick="showBookingForm('vip-a', 250000)" class="w-full bg-amber-700 hover:bg-amber-800 text-white py-3 px-6 rounded-full font-semibold transition shadow-lg">Pesan Sekarang</button>
                 </div>
             </div>
         </div>
@@ -1214,52 +744,14 @@
             <div class="lux-modal-content">
                 <div class="lux-modal-image-container relative">
                     <img src="karoke1.jpg" alt="Karaoke Room" class="lux-modal-image">
-                    <button onclick="closeModal('karaoke')" class="close-btn-lux absolute top-4 right-4 text-gray-800">
-                        <i class="fas fa-times text-xl"></i>
-                    </button>
+                    <button onclick="closeModal('karaoke')" class="close-btn-lux absolute top-4 right-4 text-gray-800"><i class="fas fa-times text-xl"></i></button>
                 </div>
                 <div class="lux-modal-details-container">
-                    <h2 class="lux-modal-title title-font">Room Karaoke</h2>
-                    <p class="lux-modal-price font-bold">Rp 30.000/jam</p>
-                    <div class="mb-6">
-                        <h3 class="lux-modal-subtitle">Deskripsi:</h3>
-                        <p class="lux-modal-text">
-                            Nikmati waktu berkualitas bersama teman atau keluarga di Room karaoke kami yang nyaman dan lengkap. 
-                            Dilengkapi dengan sistem suara berkualitas tinggi dan ribuan lagu pilihan untuk hiburan tanpa batas.
-                        </p>
-                    </div>
-                    <div class="mb-8">
-                        <h3 class="lux-modal-subtitle">Fasilitas:</h3>
-                        <ul class="lux-modal-list grid grid-cols-1 sm:grid-cols-2 gap-y-3">
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-fan lux-modal-list-icon"></i>
-                                <span>Kipas Angin</span>
-                            </li>
-                              <li class="lux-modal-list-item">
-                                <i class="fas fa-shower lux-modal-list-icon"></i>
-                                <span>Kamar Mandi Di Dalam</span>
-                            </li>
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-microphone lux-modal-list-icon"></i>
-                                <span>Sistem karaoke lengkap</span>
-                            </li>
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-music lux-modal-list-icon"></i>
-                                <span>Ribuan lagu pilihan</span>
-                            </li>
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-couch lux-modal-list-icon"></i>
-                                <span>Sofa nyaman</span>
-                            </li>
-                            <li class="lux-modal-list-item">
-                                <i class="fas fa-chair lux-modal-list-icon"></i>
-                                <span>Meja lipat</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <button onclick="showBookingForm('karaoke', 30000, true)" class="lux-modal-btn font-semibold">
-                        Pesan Sekarang
-                    </button>
+                    <h2 class="title-font text-2xl font-bold mb-2">Room Karaoke</h2>
+                    <p class="text-xl font-bold text-amber-700 mb-6">Rp 30.000/jam</p>
+                    <div class="mb-6"><h3 class="font-semibold text-gray-800 mb-2">Deskripsi:</h3><p class="text-gray-600 text-sm">Nikmati waktu berkualitas bersama teman atau keluarga di Room karaoke kami yang nyaman dan lengkap. Dilengkapi dengan sistem suara berkualitas tinggi dan ribuan lagu pilihan untuk hiburan tanpa batas.</p></div>
+                    <div class="mb-8"><h3 class="font-semibold text-gray-800 mb-2">Fasilitas:</h3><ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 text-gray-600 text-sm"><li class="flex items-center"><i class="fas fa-fan text-amber-700 mr-2"></i> Kipas Angin</li><li class="flex items-center"><i class="fas fa-shower text-amber-700 mr-2"></i> Kamar Mandi Di Dalam</li><li class="flex items-center"><i class="fas fa-microphone text-amber-700 mr-2"></i> Sistem karaoke lengkap</li><li class="flex items-center"><i class="fas fa-music text-amber-700 mr-2"></i> Ribuan lagu pilihan</li><li class="flex items-center"><i class="fas fa-couch text-amber-700 mr-2"></i> Sofa nyaman</li><li class="flex items-center"><i class="fas fa-chair text-amber-700 mr-2"></i> Meja lipat</li></ul></div>
+                    <button onclick="showBookingForm('karaoke', 30000, true)" class="w-full bg-amber-700 hover:bg-amber-800 text-white py-3 px-6 rounded-full font-semibold transition shadow-lg">Pesan Sekarang</button>
                 </div>
             </div>
         </div>
@@ -1270,42 +762,21 @@
             <div class="p-8">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="title-font text-3xl font-bold text-gray-900">Formulir Pemesanan</h2>
-                    <button onclick="closeBookingForm()" class="bg-gray-100 hover:bg-gray-200 rounded-full p-2 transition">
-                        <i class="fas fa-times text-gray-800"></i>
-                    </button>
+                    <button onclick="closeBookingForm()" class="bg-gray-100 hover:bg-gray-200 rounded-full p-2 transition"><i class="fas fa-times text-gray-800"></i></button>
                 </div>
-
                 <form id="booking-form" onsubmit="submitBooking(event)">
-                    <input type="hidden" id="room-type">
-                    <input type="hidden" id="original-room-price">
-                    <input type="hidden" id="final-room-price">
-
-                    <div class="mb-5">
-                        <label for="booking-name" class="block text-gray-700 font-semibold mb-2">Nama Lengkap</label>
-                        <input type="text" id="booking-name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 transition" required>
-                    </div>
-                    
-                    <div class="mb-5">
-                        <label for="booking-date" class="block text-gray-700 font-semibold mb-2">Tanggal Check-in</label>
-                        <input type="date" id="booking-date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 transition" required>
-                    </div>
-
-                    <div class="mb-5">
-                        <label for="booking-time" class="block text-gray-700 font-semibold mb-2">Jam Check-in</label>
-                        <input type="time" id="booking-time" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 transition" required>
-                    </div>
-                    
+                    <input type="hidden" id="room-type"><input type="hidden" id="original-room-price"><input type="hidden" id="final-room-price">
+                    <div class="mb-5"><label for="booking-name" class="block text-gray-700 font-semibold mb-2">Nama Lengkap</label><input type="text" id="booking-name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 transition" required></div>
+                    <div class="mb-5"><label for="booking-date" class="block text-gray-700 font-semibold mb-2">Tanggal Check-in</label><input type="date" id="booking-date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 transition" required></div>
+                    <div class="mb-5"><label for="booking-time" class="block text-gray-700 font-semibold mb-2">Jam Check-in</label><input type="time" id="booking-time" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 transition" required></div>
                     <div id="voucher-container" class="mb-5 hidden">
                         <label for="voucher-code" class="block text-gray-700 font-semibold mb-2">Kode Voucher</label>
                         <div class="flex items-center">
                             <input type="text" id="voucher-code" class="w-full px-4 py-3 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-amber-700 transition uppercase voucher-input" placeholder="Contoh: KAP1N98N">
-                            <button type="button" id="voucher-btn" onclick="applyVoucher()" class="bg-amber-700 hover:bg-amber-800 text-white py-3 px-6 rounded-r-lg font-medium transition duration-300 voucher-btn">
-                                Terapkan
-                            </button>
+                            <button type="button" id="voucher-btn" onclick="applyVoucher()" class="bg-amber-700 hover:bg-amber-800 text-white py-3 px-6 rounded-r-lg font-medium transition duration-300 voucher-btn">Terapkan</button>
                         </div>
                         <p id="voucher-message" class="text-sm mt-2 font-semibold"></p>
                     </div>
-
                     <div id="quantity-container" class="mb-5 hidden">
                         <label class="block text-gray-700 font-semibold mb-2">Durasi Sewa (jam)</label>
                         <div class="quantity-input">
@@ -1314,85 +785,39 @@
                             <button type="button" class="quantity-btn rounded-r-lg" onclick="incrementQuantity()">+</button>
                         </div>
                     </div>
-                    
                     <div class="mb-6">
                         <p id="total-price" class="text-gray-900 font-bold text-xl mb-2">Total Harga: Rp 0</p>
                         <p id="original-price-display" class="text-sm text-gray-500 line-through hidden">Harga Awal: Rp 0</p>
                     </div>
-
                     <div class="mb-6">
                         <label class="block text-gray-700 font-semibold mb-3">Metode Pembayaran</label>
                         <div class="space-y-3">
                             <div class="payment-option p-4 rounded-lg cursor-pointer transition-all duration-200 shadow-sm" onclick="selectPaymentMethod('cod', event)">
-                                <label class="flex items-center space-x-3 cursor-pointer">
-                                    <input type="radio" name="payment" value="cod" checked class="form-radio text-amber-700">
-                                    <div>
-                                        <span class="font-medium">Bayar di Tempat</span>
-                                        <p class="text-sm text-gray-500 mt-1">Bayar langsung saat check-in</p>
-                                    </div>
-                                </label>
+                                <label class="flex items-center space-x-3 cursor-pointer"><input type="radio" name="payment" value="cod" checked class="form-radio text-amber-700"><div><span class="font-medium">Bayar di Tempat</span><p class="text-sm text-gray-500 mt-1">Bayar langsung saat check-in</p></div></label>
                             </div>
-
                             <div class="payment-option p-4 rounded-lg cursor-pointer transition-all duration-200 shadow-sm" onclick="selectPaymentMethod('transfer', event)">
-                                <label class="flex items-center space-x-3 cursor-pointer">
-                                    <input type="radio" name="payment" value="transfer" class="form-radio text-amber-700">
-                                    <div>
-                                        <span class="font-medium">Transfer Bank/Digital</span>
-                                        <p class="text-sm text-gray-500 mt-1">Transfer ke rekening kami</p>
-                                    </div>
-                                </label>
+                                <label class="flex items-center space-x-3 cursor-pointer"><input type="radio" name="payment" value="transfer" class="form-radio text-amber-700"><div><span class="font-medium">Transfer Bank/Digital</span><p class="text-sm text-gray-500 mt-1">Transfer ke rekening kami</p></div></label>
                             </div>
-
                             <div id="bank-options" class="hidden ml-8 mt-2 space-y-3">
                                 <div class="payment-option p-4 rounded-lg">
                                     <div class="flex items-center mb-2">
-                                        <div class="bank-logo bg-blue-900 text-white flex items-center justify-center rounded-full font-bold">
-                                            BRI
-                                        </div>
-                                        <div>
-                                            <span class="font-medium">BRI</span>
-                                            <p class="text-sm text-gray-500">703401002724537</p>
-                                        </div>
+                                        <div class="bank-logo bg-blue-900 text-white flex items-center justify-center rounded-full font-bold">BRI</div>
+                                        <div><span class="font-medium">BRI</span><p class="text-sm text-gray-500">703401002724537</p></div>
                                     </div>
-                                    <div class="flex items-center">
-                                        <span class="text-sm text-gray-600 mr-2">a.n. Jeri Sembiring</span>
-                                        <button type="button" onclick="copyToClipboard('703401002724537')" class="copy-btn text-xs px-2 py-1 rounded border border-gray-300">
-                                            Salin
-                                        </button>
-                                    </div>
+                                    <div class="flex items-center"><span class="text-sm text-gray-600 mr-2">a.n. Jeri Sembiring</span><button type="button" onclick="copyToClipboard('703401002724537')" class="copy-btn text-xs px-2 py-1 rounded border border-gray-300">Salin</button></div>
                                 </div>
-
                                 <div class="payment-option p-4 rounded-lg">
                                     <div class="flex items-center mb-2">
-                                        <div class="bank-logo bg-blue-500 text-white flex items-center justify-center rounded-full font-bold">
-                                            DANA
-                                        </div>
-                                        <div>
-                                            <span class="font-medium">DANA</span>
-                                            <p class="text-sm text-gray-500">081296358077</p>
-                                        </div>
+                                        <div class="bank-logo bg-blue-500 text-white flex items-center justify-center rounded-full font-bold">DANA</div>
+                                        <div><span class="font-medium">DANA</span><p class="text-sm text-gray-500">081296358077</p></div>
                                     </div>
-                                    <div class="flex items-center">
-                                        <span class="text-sm text-gray-600 mr-2">a.n. Jeri Sembiring</span>
-                                        <button type="button" onclick="copyToClipboard('081296358077')" class="copy-btn text-xs px-2 py-1 rounded border border-gray-300">
-                                            Salin
-                                        </button>
-                                    </div>
+                                    <div class="flex items-center"><span class="text-sm text-gray-600 mr-2">a.n. Jeri Sembiring</span><button type="button" onclick="copyToClipboard('081296358077')" class="copy-btn text-xs px-2 py-1 rounded border border-gray-300">Salin</button></div>
                                 </div>
                             </div>
-                            
-                            <div id="transfer-warning" class="hidden mt-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg" role="alert">
-                                <p class="font-semibold text-sm">
-                                    <i class="fas fa-exclamation-triangle mr-2"></i>Harap screenshot bukti transfer, dan kirim melalui WhatsApp
-                                </p>
-                            </div>
-
+                            <div id="transfer-warning" class="hidden mt-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg" role="alert"><p class="font-semibold text-sm"><i class="fas fa-exclamation-triangle mr-2"></i>Harap screenshot bukti transfer, dan kirim melalui WhatsApp</p></div>
                         </div>
                     </div>
-
-                    <button type="button" id="submit-btn" onclick="submitBooking(event)" class="w-full bg-amber-700 hover:bg-amber-800 text-white py-4 px-4 rounded-full font-medium transition duration-300 shadow-lg">
-                        Pesan Sekarang
-                    </button>
+                    <button type="button" id="submit-btn" onclick="submitBooking(event)" class="w-full bg-amber-700 hover:bg-amber-800 text-white py-4 px-4 rounded-full font-medium transition duration-300 shadow-lg">Pesan Sekarang</button>
                 </form>
             </div>
         </div>
@@ -1403,26 +828,15 @@
             <i class="fas fa-check-circle text-5xl text-green-500 mb-4 animate-bounce"></i>
             <p id="checkout-time-display" class="text-xl mb-4 text-gray-700 font-semibold"></p>
             <p class="text-gray-600 text-sm mb-6">Silakan klik tombol di bawah untuk mengkonfirmasi pemesanan via WhatsApp.</p>
-            <button onclick="redirectToWhatsApp()" class="w-full whatsapp-btn py-4 px-4 rounded-full font-medium transition flex items-center justify-center text-lg shadow-lg">
-                <i class="fab fa-whatsapp text-xl mr-2"></i>
-                Konfirmasi via WhatsApp
-            </button>
+            <button onclick="redirectToWhatsApp()" class="w-full whatsapp-btn py-4 px-4 rounded-full font-medium transition flex items-center justify-center text-lg shadow-lg"><i class="fab fa-whatsapp text-xl mr-2"></i>Konfirmasi via WhatsApp</button>
         </div>
     </div>
-
     <div id="alert-notification" class="alert-notification hidden">
         <div class="bg-green-500 text-white p-4 rounded-lg shadow-lg">
             <div class="flex items-start">
-                <div class="flex-shrink-0">
-                    <i class="fas fa-check-circle text-xl"></i>
-                </div>
-                <div class="ml-3">
-                    <h3 class="font-bold" id="alert-title">Pemesanan Berhasil!</h3>
-                    <p class="text-sm" id="alert-message"></p>
-                </div>
-                <button type="button" onclick="closeAlert()" class="ml-auto -mx-1.5 -my-1.5 bg-green-500 text-white rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-600 inline-flex h-8 w-8">
-                    <i class="fas fa-times"></i>
-                </button>
+                <div class="flex-shrink-0"><i class="fas fa-check-circle text-xl"></i></div>
+                <div class="ml-3"><h3 class="font-bold" id="alert-title">Pemesanan Berhasil!</h3><p class="text-sm" id="alert-message"></p></div>
+                <button type="button" onclick="closeAlert()" class="ml-auto -mx-1.5 -my-1.5 bg-green-500 text-white rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-600 inline-flex h-8 w-8"><i class="fas fa-times"></i></button>
             </div>
         </div>
     </div>
@@ -1439,42 +853,31 @@
         }
 
         function checkUserAndRedirect() {
-            const deviceID = getDeviceID();
             const loginPage = document.getElementById('login-page');
             const mainContent = document.getElementById('main-content');
             const userIdDisplay = document.getElementById('user-id-display');
+            userIdDisplay.value = getDeviceID();
             
-            userIdDisplay.value = deviceID;
-
             if (localStorage.getItem('hasVisited')) {
-                // User sudah pernah login sebelumnya, langsung masuk ke beranda
                 loginPage.style.display = 'none';
                 mainContent.style.display = 'block';
                 document.body.style.overflow = 'auto';
                 document.documentElement.style.scrollBehavior = 'smooth';
                 initializeScrollAnimations();
-                console.log(`Auto-login. Device ID: ${deviceID}`);
             } else {
-                // Pengunjung baru, tampilkan halaman login
                 loginPage.style.display = 'flex';
                 mainContent.style.display = 'none';
                 document.body.style.overflow = 'hidden';
-                console.log(`First-time visit. User ID: ${deviceID}`);
             }
         }
-
         document.getElementById('login-button').addEventListener('click', function() {
-            // Tandai user sebagai "sudah pernah berkunjung"
             localStorage.setItem('hasVisited', 'true');
-            // Alihkan ke fungsi utama
             checkUserAndRedirect();
         });
-
-        // Jalankan fungsi saat halaman dimuat
         document.addEventListener('DOMContentLoaded', checkUserAndRedirect);
-
         // --- END DEVICE ID & AUTO-LOGIN LOGIC ---
         
+        // --- SCROLL ANIMATIONS ---
         function initializeScrollAnimations() {
             const animatedElements = document.querySelectorAll('section, .room-card');
             const observer = new IntersectionObserver((entries) => {
@@ -1483,21 +886,11 @@
                         entry.target.classList.add('visible');
                     }
                 });
-            }, { 
-                  threshold: 0.1,
-                rootMargin: '0px 0px -100px 0px'
-            });
-
-            animatedElements.forEach(el => {
-                if (el.classList.contains('delay-100') || el.classList.contains('delay-200')) {
-                    el.classList.remove('delay-100', 'delay-200');
-                }
-                observer.observe(el);
-            });
-
+            }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px'});
+            animatedElements.forEach(el => observer.observe(el));
             document.querySelector('section').classList.add('visible');
         }
-
+        
         // Scroll to top button
         const scrollTopBtn = document.getElementById('scroll-top');
         window.addEventListener('scroll', () => {
@@ -1509,74 +902,45 @@
                 scrollTopBtn.classList.add('opacity-0', 'invisible');
             }
         });
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
+        scrollTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth'}); });
+        
         // Set minimum date for booking (today)
         const today = new Date();
         const dd = String(today.getDate()).padStart(2, '0');
         const mm = String(today.getMonth() + 1).padStart(2, '0');
         const yyyy = today.getFullYear();
-        const minDate = yyyy + '-' + mm + '-' + dd;
-        document.getElementById('booking-date').min = minDate;
+        document.getElementById('booking-date').min = `${yyyy}-${mm}-${dd}`;
         
         // Mobile menu toggle
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-        }
-
+        function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
+        
         // Modal functions
         function openModal(roomType) {
             document.getElementById(`${roomType}-modal`).classList.add('active');
             document.body.style.overflow = 'hidden';
         }
-
         function closeModal(roomType) {
             document.getElementById(`${roomType}-modal`).classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
-        // --- Voucher and Booking Logic ---
-        const VOUCHER_CODES = [
-            '0B3H4D5Y', '1K8Z6P3M', '2R9Q7J5N', '3C1W8L6A', '4F5G9H2S', '5V2T7B4U', '6P9Y3R8E', '7E4A1X5C', '8M6N9O3Z', '9L2J7S4D',
-            'A8G1H5F2', 'B9C2D3E6', 'C7B4A1G9', 'D5H8J2K7', 'E6F9G3L4', 'F2G7H4I9', 'G1J4K5L8', 'H9I2J7K3', 'I5J8K6L1', 'J4K7L9M2',
-            'K3L6M1N4', 'L2M5N8O1', 'M1N4O7P2', 'N9O2P5Q8', 'O8P1Q4R7', 'P7Q2R9S3', 'Q6R1S4T9', 'R5S9T2U8', 'S4T8U1V7', 'T3U7V9W4',
-            'U2V6W8X5', 'V1W5X7Y3', 'W9X4Y6Z2', 'X8Y3Z5A1', 'Y7Z2A4B9', 'Z6A1B3C8', '0H5I4J3K', '1L8M7N6O', '2P9Q8R7S', '3T1U9V2W',
-            '4X5Y1Z6A', '5B2C7D3E', '6F9G4H8I', '7J4K1L5M', '8N6O9P3Q', '9R2S7T4U', 'A8G1H5F2', 'B9C2D3E6', 'C7B4A1G9', 'D5H8J2K7',
-            'E6F9G3L4', 'F2G7H4I9', 'G1J4K5L8', 'H9I2J7K3', 'I5J8K6L1', 'J4K7L9M2', 'K3L6M1N4', 'L2M5N8O1', 'M1N4O7P2', 'N9O2P5Q8',
-            'O8P1Q4R7', 'P7Q2R9S3', 'Q6R1S4T9', 'R5S9T2U8', 'S4T8U1V7', 'T3U7V9W4', 'U2V6W8X5', 'V1W5X7Y3', 'W9X4Y6Z2', 'X8Y3Z5A1',
-            'Y7Z2A4B9', 'Z6A1B3C8', '0H5I4J3K', '1L8M7N6O', '2P9Q8R7S', '3T1U9V2W', '4X5Y1Z6A', '5B2C7D3E', '6F9G4H8I', '7J4K1L5M',
-            '8N6O9P3Q', '9R2S7T4U', 'A8G1H5F2', 'B9C2D3E6', 'C7B4A1G9', 'D5H8J2K7', 'E6F9G3L4', 'F2G7H4I9', 'G1J4K5L8', 'H9I2J7K3',
-            'I5J8K6L1', 'J4K7L9M2', 'K3L6M1N4', 'L2M5N8O1', 'M1N4O7P2', 'N9O2P5Q8', 'O8P1Q4R7', 'P7Q2R9S3', 'Q6R1S4T9', 'R5S9T2U8'
-        ];
-
+        // --- VOUCHER & BOOKING LOGIC ---
+        // Array voucher telah diduplikasi dari kode asli dan sekarang hanya berisi kode unik.
+        const VOUCHER_CODES = ['0B3H4D5Y', '1K8Z6P3M', '2R9Q7J5N', '3C1W8L6A', '4F5G9H2S', '5V2T7B4U', '6P9Y3R8E', '7E4A1X5C', '8M6N9O3Z', '9L2J7S4D', 'A8G1H5F2', 'B9C2D3E6', 'C7B4A1G9', 'D5H8J2K7', 'E6F9G3L4', 'F2G7H4I9', 'G1J4K5L8', 'H9I2J7K3', 'I5J8K6L1', 'J4K7L9M2', 'K3L6M1N4', 'L2M5N8O1', 'M1N4O7P2', 'N9O2P5Q8', 'O8P1Q4R7', 'P7Q2R9S3', 'Q6R1S4T9', 'R5S9T2U8', 'S4T8U1V7', 'T3U7V9W4', 'U2V6W8X5', 'V1W5X7Y3', 'W9X4Y6Z2', 'X8Y3Z5A1', 'Y7Z2A4B9', 'Z6A1B3C8', '0H5I4J3K', '1L8M7N6O', '2P9Q8R7S', '3T1U9V2W', '4X5Y1Z6A', '5B2C7D3E', '6F9G4H8I', '7J4K1L5M', '8N6O9P3Q', '9R2S7T4U'];
         let VOUCHER_USAGE_GLOBAL = JSON.parse(localStorage.getItem('voucherUsageGlobal')) || {};
         let VOUCHER_USAGE_DEVICE = JSON.parse(localStorage.getItem('voucherUsageDevice')) || {};
-
-        const VOUCHER_DISCOUNTS = {
-            'deluxe': 100000,
-            'vip-b': 125000,
-            'vip-a': 150000
-        };
-        const MAX_USES_PER_DEVICE = 2; // Maksimal 2 kali per user ID
-        const MAX_TOTAL_USES = 100; // Maksimal 100 kali per kode voucher
-
+        const VOUCHER_DISCOUNTS = { 'deluxe': 100000, 'vip-b': 125000, 'vip-a': 150000 };
+        const MAX_USES_PER_DEVICE = 2;
+        const MAX_TOTAL_USES = 100;
         let isKaraokeRoom = false;
         let quantity = 1;
         let pricePerHour = 30000;
-        let currentRoomPrice = 0;
         let originalPrice = 0;
         
         function showBookingForm(roomType, roomPrice, isKaraoke = false) {
             document.getElementById('room-type').value = roomType;
             document.getElementById('original-room-price').value = roomPrice;
             document.getElementById('final-room-price').value = roomPrice;
-            currentRoomPrice = roomPrice;
             originalPrice = roomPrice;
             document.getElementById('booking-modal').classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -1584,35 +948,27 @@
             
             const voucherContainer = document.getElementById('voucher-container');
             const quantityContainer = document.getElementById('quantity-container');
-            
             voucherContainer.classList.add('hidden');
             quantityContainer.classList.add('hidden');
-
             document.getElementById('voucher-code').value = '';
             document.getElementById('voucher-message').textContent = '';
-            document.getElementById('voucher-message').className = 'text-sm mt-2 font-semibold';
             
             isKaraokeRoom = isKaraoke;
-            
             if (isKaraoke) {
                 quantityContainer.classList.remove('hidden');
                 pricePerHour = roomPrice;
                 quantity = 1;
                 document.getElementById('quantity').value = quantity;
-                updateTotalPrice(roomPrice);
-            } else if (roomType === 'standard' || roomType === 'superior') {
-                updateTotalPrice(roomPrice);
-            } else {
+            } else if (roomType !== 'standard' && roomType !== 'superior') {
                 voucherContainer.classList.remove('hidden');
-                updateTotalPrice(roomPrice);
             }
+            updateTotalPrice(roomPrice);
         }
 
         function updateTotalPrice(newPrice) {
-            currentRoomPrice = newPrice;
             const priceElement = document.getElementById('total-price');
             const originalPriceElement = document.getElementById('original-price-display');
-
+            
             if (isKaraokeRoom) {
                 const totalPrice = quantity * pricePerHour;
                 priceElement.innerHTML = `Total Harga: Rp ${totalPrice.toLocaleString('id-ID')}`;
@@ -1646,7 +1002,7 @@
                 return;
             }
             
-            const deviceUsage = VOUCHER_USAGE_DEVICE[deviceID] && VOUCHER_USAGE_DEVICE[deviceID][voucherCode] ? VOUCHER_USAGE_DEVICE[deviceID][voucherCode] : 0;
+            const deviceUsage = (VOUCHER_USAGE_DEVICE[deviceID] && VOUCHER_USAGE_DEVICE[deviceID][voucherCode]) ? VOUCHER_USAGE_DEVICE[deviceID][voucherCode] : 0;
             const globalUsage = VOUCHER_USAGE_GLOBAL[voucherCode] || 0;
 
             if (globalUsage >= MAX_TOTAL_USES) {
@@ -1654,13 +1010,11 @@
                 voucherMessage.classList.add('text-red-600');
                 return;
             }
-
             if (deviceUsage >= MAX_USES_PER_DEVICE) {
-                voucherMessage.textContent = `Maaf, Anda sudah mencapai batas penggunaan voucher ini (${MAX_USES_PER_DEVICE} kali).`;
+                voucherMessage.textContent = `Maaf, Anda sudah mencapai batas penggunaan voucher ini.`;
                 voucherMessage.classList.add('text-red-600');
                 return;
             }
-
             if (VOUCHER_DISCOUNTS[roomType]) {
                 const discountedPrice = VOUCHER_DISCOUNTS[roomType];
                 document.getElementById('final-room-price').value = discountedPrice;
@@ -1672,93 +1026,40 @@
                 voucherMessage.classList.add('text-red-600');
             }
         }
-
-        function incrementQuantity() {
-            quantity++;
-            document.getElementById('quantity').value = quantity;
-            updateTotalPrice(pricePerHour * quantity);
-        }
-
-        function decrementQuantity() {
-            if (quantity > 1) {
-                quantity--;
-                document.getElementById('quantity').value = quantity;
-                updateTotalPrice(pricePerHour * quantity);
-            }
-        }
-
+        function incrementQuantity() { quantity++; document.getElementById('quantity').value = quantity; updateTotalPrice(pricePerHour * quantity); }
+        function decrementQuantity() { if (quantity > 1) { quantity--; document.getElementById('quantity').value = quantity; updateTotalPrice(pricePerHour * quantity); }}
         function closeBookingForm() {
             document.getElementById('booking-modal').classList.remove('active');
             document.body.style.overflow = 'auto';
-            resetPaymentOptions();
             document.getElementById('total-price').textContent = 'Total Harga: Rp 0';
             document.getElementById('original-price-display').classList.add('hidden');
+            document.getElementById('transfer-warning').classList.add('hidden');
+            document.getElementById('bank-options').classList.add('hidden');
         }
-
-        // Payment method selection
         function selectPaymentMethod(method, event) {
             const bankOptions = document.getElementById('bank-options');
             const transferWarning = document.getElementById('transfer-warning');
-
-            document.querySelectorAll('.payment-option').forEach(option => {
-                option.classList.remove('selected');
-            });
+            document.querySelectorAll('.payment-option').forEach(option => { option.classList.remove('selected'); });
             event.currentTarget.classList.add('selected');
-
-            if (method === 'transfer') {
-                bankOptions.classList.remove('hidden');
-                transferWarning.classList.remove('hidden'); // Tampilkan peringatan
-            } else {
-                bankOptions.classList.add('hidden');
-                transferWarning.classList.add('hidden'); // Sembunyikan peringatan
-            }
+            bankOptions.classList.toggle('hidden', method !== 'transfer');
+            transferWarning.classList.toggle('hidden', method !== 'transfer');
         }
-
-        // Copy to clipboard function
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
                 const btn = event.currentTarget;
                 btn.textContent = 'Tersalin!';
                 btn.classList.add('copied');
-                setTimeout(() => {
-                    btn.textContent = 'Salin';
-                    btn.classList.remove('copied');
-                }, 2000);
-            }).catch(err => {
-                console.error('Failed to copy text: ', err);
+                setTimeout(() => { btn.textContent = 'Salin'; btn.classList.remove('copied'); }, 2000);
             });
         }
-
-        function resetPaymentOptions() {
-            document.querySelectorAll('.payment-option').forEach(option => {
-                option.classList.remove('selected');
-            });
-            document.getElementById('bank-options').classList.add('hidden');
-            document.getElementById('transfer-warning').classList.add('hidden');
-            document.querySelector('input[name="payment"][value="cod"]').checked = true;
-        }
-
-        function closeConfirmation() {
-            document.getElementById('confirmation-modal').classList.add('hidden');
-            document.getElementById('confirmation-modal').classList.remove('flex');
-            document.body.style.overflow = 'auto';
-        }
-
         function showAlert(title, message) {
             const alert = document.getElementById('alert-notification');
             document.getElementById('alert-title').textContent = title;
             document.getElementById('alert-message').textContent = message;
             alert.classList.remove('hidden');
-            setTimeout(() => {
-                alert.classList.add('hidden');
-            }, 5000);
+            setTimeout(() => { alert.classList.add('hidden'); }, 5000);
         }
-
-        function closeAlert() {
-            document.getElementById('alert-notification').classList.add('hidden');
-        }
-
-        // WhatsApp redirection function
+        function closeAlert() { document.getElementById('alert-notification').classList.add('hidden'); }
         function redirectToWhatsApp() {
             const name = document.getElementById('booking-name').value;
             const roomType = document.getElementById('room-type').value;
@@ -1767,396 +1068,117 @@
             const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
             const voucherCode = document.getElementById('voucher-code').value.toUpperCase();
             const deviceID = getDeviceID();
-
-            let finalRoomPrice;
-            let originalRoomPrice;
-            if (isKaraokeRoom) {
-                finalRoomPrice = quantity * pricePerHour;
-                originalRoomPrice = finalRoomPrice; // No original price for karaoke, it's a dynamic price
-            } else {
-                finalRoomPrice = Number(document.getElementById('final-room-price').value);
-                originalRoomPrice = Number(document.getElementById('original-room-price').value);
-            }
-            
+            let finalRoomPrice = Number(document.getElementById('final-room-price').value);
+            const originalRoomPrice = Number(document.getElementById('original-room-price').value);
             const isVoucherApplied = (voucherCode && VOUCHER_CODES.includes(voucherCode) && VOUCHER_DISCOUNTS[roomType] && finalRoomPrice < originalRoomPrice);
-            
+
             if (isVoucherApplied) {
-                const deviceUsage = VOUCHER_USAGE_DEVICE[deviceID] && VOUCHER_USAGE_DEVICE[deviceID][voucherCode] ? VOUCHER_USAGE_DEVICE[deviceID][voucherCode] : 0;
-                const globalUsage = VOUCHER_USAGE_GLOBAL[voucherCode] || 0;
-                
-                if (deviceUsage < MAX_USES_PER_DEVICE && globalUsage < MAX_TOTAL_USES) {
-                     // Update usage per device
-                    if (!VOUCHER_USAGE_DEVICE[deviceID]) {
-                        VOUCHER_USAGE_DEVICE[deviceID] = {};
-                    }
-                    if (!VOUCHER_USAGE_DEVICE[deviceID][voucherCode]) {
-                        VOUCHER_USAGE_DEVICE[deviceID][voucherCode] = 0;
-                    }
-                    VOUCHER_USAGE_DEVICE[deviceID][voucherCode]++;
-                    localStorage.setItem('voucherUsageDevice', JSON.stringify(VOUCHER_USAGE_DEVICE));
-                    
-                    // Update global usage
-                    VOUCHER_USAGE_GLOBAL[voucherCode] = (VOUCHER_USAGE_GLOBAL[voucherCode] || 0) + 1;
-                    localStorage.setItem('voucherUsageGlobal', JSON.stringify(VOUCHER_USAGE_GLOBAL));
-                }
+                if (!VOUCHER_USAGE_DEVICE[deviceID]) { VOUCHER_USAGE_DEVICE[deviceID] = {}; }
+                if (!VOUCHER_USAGE_DEVICE[deviceID][voucherCode]) { VOUCHER_USAGE_DEVICE[deviceID][voucherCode] = 0; }
+                VOUCHER_USAGE_DEVICE[deviceID][voucherCode]++;
+                localStorage.setItem('voucherUsageDevice', JSON.stringify(VOUCHER_USAGE_DEVICE));
+                VOUCHER_USAGE_GLOBAL[voucherCode] = (VOUCHER_USAGE_GLOBAL[voucherCode] || 0) + 1;
+                localStorage.setItem('voucherUsageGlobal', JSON.stringify(VOUCHER_USAGE_GLOBAL));
             }
-            
-            const formattedDate = new Date(date).toLocaleDateString('id-ID', {
-                weekday: 'long',
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric'
-            });
-
-            let message = `*Pesanan Kamar Penginapan Kawan Lama*\n\n`;
-            message += `*Nama Pemesan*: ${name}\n`;
-            message += `*Tipe Kamar*: ${roomType}\n`;
-            
-            if (isKaraokeRoom) {
-                message += `*Durasi Sewa*: ${quantity} jam\n`;
-                message += `*Total Harga*: Rp ${finalRoomPrice.toLocaleString('id-ID')}\n`;
-            } else {
-                if (isVoucherApplied) {
-                    message += `*Harga Kamar*: Rp ${finalRoomPrice.toLocaleString('id-ID')}\n`;
-                    message += `(Harga Awal: Rp ${originalRoomPrice.toLocaleString('id-ID')})\n`;
-                } else {
-                    message += `*Harga Kamar*: Rp ${finalRoomPrice.toLocaleString('id-ID')}\n`;
-                }
-            }
-            
-            message += `*Tanggal Check-in*: ${formattedDate}\n`;
-            message += `*Jam Check-in*: ${time}\n`;
-            message += `*Metode Pembayaran*: ${paymentMethod === 'cod' ? 'Bayar di Tempat' : 'Transfer Bank'}\n`;
-            
-            if (isVoucherApplied) {
-                const globalUsageAfter = VOUCHER_USAGE_GLOBAL[voucherCode] || 0;
-                const remainingUses = MAX_TOTAL_USES - globalUsageAfter;
-                const maskedVoucher = voucherCode.substring(0, 3) + '***' + voucherCode.substring(6);
-                message += `\n*User ID Acak*: ${deviceID}\n`;
-                message += `*Kode Voucher Acak*: ${maskedVoucher}\n`;
-            }
-            
-            message += `\n*Ketentuan Booking Kamar:*\n`;
-            message += `1. Saat Check in silahkan infokan nama pemesan.\n`;
-            message += `2. Tidak ada syarat saat booking dan saat check in.\n`;
-            message += `3. Jika check in lewat 1 jam dari waktu pemesanan maka pesanan kamar dianggap hangus.\n`;
-            message += `4. Waktu Check Out sesuai dengan ketentuan hotel.\n`;
-            message += `5. Kamar yg dipesan tidak dapat ditukar ke kamar yang lebih rendah.\n`;
-            message += `6. Pesanan kamar yang sudah di bayar tidak dapat dikembalikan dengan alasan apapun.\n\n`;
-            message += `Privasi dan kenyamanan anda prioritas kami.`;
-
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/6282218399499?text=${encodedMessage}`;
-            window.open(whatsappUrl, '_blank');
-
-            closeConfirmation();
-            closeBookingForm();
+            if (isKaraokeRoom) { finalRoomPrice = quantity * pricePerHour; }
+            const formattedDate = new Date(date).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+            let message = `*Pesanan Kamar Penginapan Kawan Lama*\n\n*Nama Pemesan*: ${name}\n*Tipe Kamar*: ${roomType}\n`;
+            if (isKaraokeRoom) { message += `*Durasi Sewa*: ${quantity} jam\n*Total Harga*: Rp ${finalRoomPrice.toLocaleString('id-ID')}\n`; }
+            else { message += `*Harga Kamar*: Rp ${finalRoomPrice.toLocaleString('id-ID')}\n`; if (isVoucherApplied) { message += `(Harga Awal: Rp ${originalRoomPrice.toLocaleString('id-ID')})\n`; }}
+            message += `*Tanggal Check-in*: ${formattedDate}\n*Jam Check-in*: ${time}\n*Metode Pembayaran*: ${paymentMethod === 'cod' ? 'Bayar di Tempat' : 'Transfer Bank'}\n`;
+            if (isVoucherApplied) { message += `\n*User ID Acak*: ${deviceID}\n*Kode Voucher Acak*: ${voucherCode.substring(0, 3) + '***' + voucherCode.substring(6)}\n`; }
+            message += `\n*Ketentuan Booking Kamar:*\n1. Saat Check in silahkan infokan nama pemesan.\n2. Tidak ada syarat saat booking dan saat check in.\n3. Jika check in lewat 1 jam dari waktu pemesanan maka pesanan kamar dianggap hangus.\n4. Waktu Check Out sesuai dengan ketentuan hotel.\n5. Kamar yg dipesan tidak dapat ditukar ke kamar yang lebih rendah.\n6. Pesanan kamar yang sudah di bayar tidak dapat dikembalikan dengan alasan apapun.\n\nPrivasi dan kenyamanan anda prioritas kami.`;
+            window.open(`https://wa.me/6282218399499?text=${encodeURIComponent(message)}`, '_blank');
+            document.getElementById('confirmation-modal').classList.remove('flex');
             document.getElementById('booking-form').reset();
         }
-
         function submitBooking(event) {
             event.preventDefault();
             const name = document.getElementById('booking-name').value;
             const date = document.getElementById('booking-date').value;
             const time = document.getElementById('booking-time').value;
+            if (!name || !date || !time) { showAlert('Peringatan', 'Harap lengkapi semua field yang wajib diisi!'); return; }
+            let finalRoomPrice = Number(document.getElementById('original-room-price').value);
             const roomType = document.getElementById('room-type').value;
             const voucherCode = document.getElementById('voucher-code').value.toUpperCase();
-            const deviceID = getDeviceID();
-            const originalRoomPrice = Number(document.getElementById('original-room-price').value);
-
-            if (!name || !date || !time) {
-                showAlert('Peringatan', 'Harap lengkapi semua field yang wajib diisi!');
-                return;
+            if (!document.getElementById('voucher-container').classList.contains('hidden') && voucherCode) {
+                if (!VOUCHER_CODES.includes(voucherCode)) { showAlert('Peringatan', 'Kode voucher tidak valid.'); return; }
+                if (VOUCHER_USAGE_GLOBAL[voucherCode] >= MAX_TOTAL_USES) { showAlert('Peringatan', `Maaf, kode voucher ini sudah habis.`); return; }
+                if ((VOUCHER_USAGE_DEVICE[getDeviceID()] && VOUCHER_USAGE_DEVICE[getDeviceID()][voucherCode]) >= MAX_USES_PER_DEVICE) { showAlert('Peringatan', `Maaf, Anda sudah mencapai batas penggunaan voucher ini.`); return; }
+                if (VOUCHER_DISCOUNTS[roomType]) { finalRoomPrice = VOUCHER_DISCOUNTS[roomType]; }
+                else { showAlert('Peringatan', 'Voucher tidak berlaku untuk kamar ini.'); return; }
             }
-
-            let finalRoomPrice = originalRoomPrice;
-            let isVoucherApplied = false;
-
-            if (document.getElementById('voucher-container').classList.contains('hidden') === false && voucherCode) {
-                const deviceUsage = VOUCHER_USAGE_DEVICE[deviceID] && VOUCHER_USAGE_DEVICE[deviceID][voucherCode] ? VOUCHER_USAGE_DEVICE[deviceID][voucherCode] : 0;
-                const globalUsage = VOUCHER_USAGE_GLOBAL[voucherCode] || 0;
-
-                if (!VOUCHER_CODES.includes(voucherCode)) {
-                    showAlert('Peringatan', 'Kode voucher tidak valid.');
-                    return;
-                }
-                
-                if (globalUsage >= MAX_TOTAL_USES) {
-                    showAlert('Peringatan', `Maaf, kode voucher ini sudah habis. (${globalUsage} pengguna)`);
-                    return;
-                }
-
-                if (deviceUsage >= MAX_USES_PER_DEVICE) {
-                    showAlert('Peringatan', `Maaf, Anda sudah mencapai batas penggunaan voucher ini (${MAX_USES_PER_DEVICE} kali).`);
-                    return;
-                }
-                
-                if (VOUCHER_DISCOUNTS[roomType]) {
-                    finalRoomPrice = VOUCHER_DISCOUNTS[roomType];
-                    isVoucherApplied = true;
-                } else {
-                    showAlert('Peringatan', 'Voucher tidak berlaku untuk kamar ini.');
-                    return;
-                }
-            }
-
             document.getElementById('final-room-price').value = finalRoomPrice;
-
-            if (isKaraokeRoom) {
-                finalRoomPrice = quantity * pricePerHour;
-            }
-
             const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
-
             const [hours, minutes] = time.split(':').map(Number);
             const totalMinutes = hours * 60 + minutes;
-
-            let checkoutTime;
-            const checkinDate = new Date(date);
-            const checkoutDate = new Date(checkinDate);
-
+            let checkoutTime, checkoutDate = new Date(date);
             if (isKaraokeRoom) {
-                const checkoutHour = Math.floor((totalMinutes + quantity * 60) / 60) % 24;
-                const checkoutMinute = (totalMinutes + quantity * 60) % 60;
-                checkoutTime = `${String(checkoutHour).padStart(2, '0')}:${String(checkoutMinute).padStart(2, '0')}`;
+                checkoutTime = `${String(Math.floor((totalMinutes + quantity * 60) / 60) % 24).padStart(2, '0')}:${String((totalMinutes + quantity * 60) % 60).padStart(2, '0')}`;
             } else if (totalMinutes >= 1*60 && totalMinutes <= 11*60+30) {
                 checkoutTime = "18:00";
             } else {
                 checkoutTime = "12:00";
                 checkoutDate.setDate(checkoutDate.getDate() + 1);
             }
-
-            const formattedCheckinDate = new Date(date).toLocaleDateString('id-ID', {
-                weekday: 'long',
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric'
-            });
-
-            const formattedCheckoutDate = checkoutDate.toLocaleDateString('id-ID', {
-                weekday: 'long',
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric'
-            });
-
-            const confirmationModal = document.getElementById('confirmation-modal');
-            const checkoutDisplay = document.getElementById('checkout-time-display');
-
-            let checkoutMessage;
-            if (isKaraokeRoom) {
-                checkoutMessage = `Jam ${checkoutTime}, ${formattedCheckinDate}`;
-            } else if (totalMinutes >= 1*60 && totalMinutes <= 11*60+30) {
-                checkoutMessage = `Jam ${checkoutTime}, ${formattedCheckinDate}`;
-            } else {
-                checkoutMessage = `Jam ${checkoutTime}, ${formattedCheckoutDate}`;
-            }
-
-            checkoutDisplay.textContent = checkoutMessage;
-            confirmationModal.classList.remove('hidden');
-            confirmationModal.classList.add('flex');
+            document.getElementById('checkout-time-display').textContent = `${checkoutTime}, ${checkoutDate.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'})}`;
+            document.getElementById('confirmation-modal').classList.add('flex');
             document.body.style.overflow = 'hidden';
-
-            let alertMessage = `Pemesanan kamar ${roomType} untuk ${formattedCheckinDate} berhasil.`;
-            if (isKaraokeRoom) {
-                alertMessage += ` Durasi ${quantity} jam. Total Rp ${finalRoomPrice.toLocaleString('id-ID')}.`;
-            } else {
-                alertMessage += ` Total Rp ${finalRoomPrice.toLocaleString('id-ID')}.`;
-            }
-            
-            if (paymentMethod === 'transfer') {
-                alertMessage += ` Silakan lakukan transfer ke rekening yang tersedia.`;
-            } else {
-                alertMessage += ` Silakan datang sesuai waktu check-in.`;
-            }
-            setTimeout(() => {
-                showAlert('Pemesanan Berhasil!', alertMessage);
-            }, 500);
+            showAlert('Pemesanan Berhasil!', `Pemesanan ${roomType} berhasil. Total Rp ${finalRoomPrice.toLocaleString('id-ID')}.`);
         }
-    </script>
-    <script>
+        
+        // --- CAROUSEL LOGIC ---
         document.addEventListener('DOMContentLoaded', () => {
             const carouselContainers = document.querySelectorAll('.carousel-container');
-            const AUTOPLAY_INTERVAL = 3000; // 3 seconds
-
+            const AUTOPLAY_INTERVAL = 3000;
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    const container = entry.target;
-                    if (entry.isIntersecting) {
-                        // Start autoplay only when the carousel is visible
-                        startAutoplay(container);
-                    } else {
-                        // Stop autoplay when the carousel is no longer visible
-                        stopAutoplay(container);
-                    }
+                    if (entry.isIntersecting) { startAutoplay(entry.target); }
+                    else { stopAutoplay(entry.target); }
                 });
-            }, {
-                threshold: 0.5 // Adjust as needed, 0.5 means 50% of the carousel is visible
-            });
+            }, { threshold: 0.5 });
 
             carouselContainers.forEach(container => {
                 const carouselTrack = container.querySelector('.carousel-track');
-                const imagesAttr = carouselTrack.getAttribute('data-images');
-                const images = imagesAttr.split(',').map(src => src.trim());
-
+                const images = carouselTrack.getAttribute('data-images').split(',').map(src => src.trim());
                 if (images.length === 0) return;
-
-                // Clear any existing content to prevent duplication
                 carouselTrack.innerHTML = '';
-
-                // Create and append slides for the carousel
                 images.forEach(src => {
                     const slide = document.createElement('div');
                     slide.classList.add('carousel-slide');
                     slide.innerHTML = `<img src="${src}" alt="Slide Image">`;
                     carouselTrack.appendChild(slide);
                 });
-                
-                // Add autoplay timer to the container's dataset
                 container.dataset.currentIndex = 0;
                 container.dataset.totalSlides = images.length;
-                container.dataset.isDragging = 'false';
-                
-                // Initial update and start observing
                 updateCarousel(container);
                 observer.observe(container);
-
-                // Navigation buttons
-                const prevBtn = container.querySelector('.prev-btn');
-                const nextBtn = container.querySelector('.next-btn');
-                
-                if (nextBtn) {
-                    nextBtn.addEventListener('click', () => {
-                        moveToNextSlide(container);
-                        startAutoplay(container); // Restart timer
-                    });
-                }
-
-                if (prevBtn) {
-                    prevBtn.addEventListener('click', () => {
-                        moveToPrevSlide(container);
-                        startAutoplay(container); // Restart timer
-                    });
-                }
-                
-                // Touch/Swipe functionality
-                let touchStartX = 0;
-                let touchEndX = 0;
-
-                container.addEventListener('touchstart', e => {
-                    touchStartX = e.touches[0].clientX;
-                    stopAutoplay(container);
-                });
-
-                container.addEventListener('touchend', e => {
-                    touchEndX = e.changedTouches[0].clientX;
-                    handleSwipe(container);
-                    startAutoplay(container); // Restart autoplay after touch ends
-                });
-
-                function handleSwipe(container) {
-                    const threshold = 50; // Minimum distance to be considered a swipe
-                    const swipeDistance = touchEndX - touchStartX;
-
-                    if (swipeDistance > threshold) {
-                        // Swiped right (previous)
-                        moveToPrevSlide(container);
-                    } else if (swipeDistance < -threshold) {
-                        // Swiped left (next)
-                        moveToNextSlide(container);
-                    }
-                }
-
-                // Mouse Drag functionality (for desktop)
-                let isDragging = false;
-                let startPos = 0;
-                let currentTranslate = 0;
-                let prevTranslate = 0;
-                
-                container.addEventListener('mousedown', e => {
-                    isDragging = true;
-                    container.dataset.isDragging = 'true';
-                    startPos = e.clientX;
-                    stopAutoplay(container);
-                    carouselTrack.style.transition = 'none'; // Disable transition for smooth dragging
-                });
-
-                container.addEventListener('mouseup', () => {
-                    isDragging = false;
-                    container.dataset.isDragging = 'false';
-                    const movedBy = currentTranslate - prevTranslate;
-                    if (movedBy < -100) { // Swiped left
-                        moveToNextSlide(container);
-                    } else if (movedBy > 100) { // Swiped right
-                        moveToPrevSlide(container);
-                    } else {
-                        // Snap back to the current slide if not enough movement
-                        updateCarousel(container);
-                    }
-                    carouselTrack.style.transition = 'transform 0.5s ease-in-out';
-                    startAutoplay(container);
-                });
-                
-                container.addEventListener('mouseleave', () => {
-                    if (container.dataset.isDragging === 'true') {
-                        container.dataset.isDragging = 'false';
-                        updateCarousel(container);
-                        carouselTrack.style.transition = 'transform 0.5s ease-in-out';
-                        startAutoplay(container);
-                    }
-                });
-
-                container.addEventListener('mousemove', e => {
-                    if (container.dataset.isDragging !== 'true') return;
-                    e.preventDefault();
-                    const currentPos = e.clientX;
-                    currentTranslate = prevTranslate + currentPos - startPos;
-                    carouselTrack.style.transform = `translateX(${currentTranslate}px)`;
-                });
+                container.querySelector('.next-btn').addEventListener('click', () => { moveToNextSlide(container); startAutoplay(container); });
+                container.querySelector('.prev-btn').addEventListener('click', () => { moveToPrevSlide(container); startAutoplay(container); });
             });
-        
+
             function updateCarousel(container) {
                 const carouselTrack = container.querySelector('.carousel-track');
-                const slideWidth = container.offsetWidth;
-                const currentIndex = parseInt(container.dataset.currentIndex);
-                carouselTrack.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
+                carouselTrack.style.transform = `translateX(${-parseInt(container.dataset.currentIndex) * container.offsetWidth}px)`;
             }
-
             function moveToNextSlide(container) {
                 const totalSlides = parseInt(container.dataset.totalSlides);
-                let currentIndex = parseInt(container.dataset.currentIndex);
-                currentIndex = (currentIndex + 1) % totalSlides;
-                container.dataset.currentIndex = currentIndex;
+                container.dataset.currentIndex = (parseInt(container.dataset.currentIndex) + 1) % totalSlides;
                 updateCarousel(container);
             }
-
             function moveToPrevSlide(container) {
                 const totalSlides = parseInt(container.dataset.totalSlides);
-                let currentIndex = parseInt(container.dataset.currentIndex);
-                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-                container.dataset.currentIndex = currentIndex;
+                container.dataset.currentIndex = (parseInt(container.dataset.currentIndex) - 1 + totalSlides) % totalSlides;
                 updateCarousel(container);
             }
-            
             function startAutoplay(container) {
-                stopAutoplay(container); // Clear existing timer
-                container.dataset.autoplayTimer = setInterval(() => {
-                    moveToNextSlide(container);
-                }, AUTOPLAY_INTERVAL);
+                stopAutoplay(container);
+                container.dataset.autoplayTimer = setInterval(() => { moveToNextSlide(container); }, AUTOPLAY_INTERVAL);
             }
-
             function stopAutoplay(container) {
-                const timer = container.dataset.autoplayTimer;
-                if (timer) {
-                    clearInterval(timer);
-                    container.dataset.autoplayTimer = null;
-                }
+                if (container.dataset.autoplayTimer) { clearInterval(container.dataset.autoplayTimer); container.dataset.autoplayTimer = null; }
             }
-
-            // Handle window resize
-            window.addEventListener('resize', () => {
-                carouselContainers.forEach(container => updateCarousel(container));
-            });
+            window.addEventListener('resize', () => { carouselContainers.forEach(container => updateCarousel(container)); });
         });
     </script>
 </body>
