@@ -4,20 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Penginapan Kawan Lama - Hotel Dengan Suasana Perdesaan Yang Asri</title>
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LYRLT7TRZP"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'G-LYRLT7TRZP');
-    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS Anda Dipertahankan */
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f8f5f2;
@@ -79,7 +69,7 @@
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
-            to { transform: translateY(0); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .grow {
             transition: all .2s ease-in-out;
@@ -98,10 +88,8 @@
             opacity: 1;
             visibility: visible;
         }
-        
-        /* PERBAIKAN: Mengganti 'bg.jpg' menjadi '1000009667.jpg' untuk Hero Section */
         .hero {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('1000009667.jpg');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('bg.jpg');
             background-size: cover;
             background-position: center;
         }
@@ -276,15 +264,19 @@
 
         /* Login page styles */
         #login-page {
+            display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
-            /* PERBAIKAN: Mengganti 'bg.jpg' menjadi '1000009667.jpg' untuk Login Page */
             background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('bg.jpg');
             background-size: cover;
             background-position: center;
             animation: fadeIn 1s ease forwards;
         }
+        #main-content {
+            display: none;
+        }
+        /* Adjusted styles for the smaller login box */
         .login-box {
             width: 100%;
             max-width: 280px; /* Smaller max-width */
@@ -316,6 +308,10 @@
         }
         
         /* New styles for luxurious modal */
+        /*
+          * MODIFICATION START:
+          * Mengubah tata letak modal untuk tampilan yang lebih teratur.
+          */
         .lux-modal-content {
             display: flex;
             flex-direction: column;
@@ -432,7 +428,7 @@
             width: 100%;
             background-color: #fff;
             border-radius: 0.5rem;
-            box-shadow: 0 25px 50px -12p x rgba(0, 0, 0, 0.25);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
             max-height: 90vh;
             overflow-y: auto;
         }
@@ -490,10 +486,11 @@
 </head>
 <body>
 
-    <div id="login-page" class="hidden"> 
+    <div id="login-page">
         <div class="text-center text-white bg-black bg-opacity-50 p-6 rounded-xl shadow-2xl animate-fade-in login-box">
+            
             <h1 class="title-font text-3xl font-bold mb-2">Penginapan Kawan Lama Mardingding</h1>
-            <p class="text-sm mb-4 font-light">Selamat datang di penginapan kawan lama.</p>
+            <p class="text-sm mb-4 font-light">Selamat datang di penginapan kawan lama</p>
             <div class="mb-4">
                 <p class="text-xs text-gray-300 mb-1">User ID Anda:</p>
                 <input type="text" id="user-id-display" readonly class="text-sm font-mono text-center bg-transparent border-none outline-none w-full text-white cursor-default">
@@ -504,7 +501,7 @@
         </div>
     </div>
 
-    <div id="main-content" class="block"> 
+    <div id="main-content" class="hidden">
         <header class="fixed w-full z-50 bg-white shadow-lg">
             <div class="container mx-auto px-4 py-4 flex justify-between items-center">
                 <div class="flex items-center">
@@ -536,9 +533,9 @@
             </div>
         </div>
 
-        <section id="home" class="hero pt-40 pb-56 md:pt-64 md:pb-80 flex items-center relative">
+        <section id="home" class="hero pt-32 pb-48 md:pt-48 md:pb-64 flex items-center relative">
             <div class="absolute inset-0 bg-black opacity-50"></div>
-            <div class="container mx-auto px-4 dtext-center text-white relative z-10">
+            <div class="container mx-auto px-4 text-center text-white relative z-10">
                 <img src="bg.jpg" alt="Penginapan Kawan Lama" class="h-28 w-28 rounded-full mx-auto mb-6 border-4 border-white shadow-xl">
                 <h1 class="title-font text-4xl md:text-5xl font-bold mb-6 animate-fade-in">Penginapan Kawan Lama Mardingding</h1>
                 <p class="text-xl md:text-3xl mb-8 max-w-3xl mx-auto animate-fade-in delay-100 font-light">Tempat menginap eksklusif dengan pemandangan perdesaan yang asri</p>
@@ -547,6 +544,7 @@
                 </a>
             </div>
         </section>
+
         <section id="rooms" class="py-24 bg-gray-50">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-16">
@@ -555,11 +553,7 @@
                     <p class="text-gray-600 mt-4 max-w-3xl mx-auto text-lg">
                         Temukan pengalaman menginap tak terlupakan dalam suasana perdesaan yang asri dengan pilihan kamar kami yang didesain untuk kenyamanan dan ketenangan Anda.
                     </p>
-                    
-                    <button onclick="kirimKodeVoucher()" class="whatsapp-btn inline-block font-semibold py-3 px-8 rounded-full transition duration-300 text-lg shadow-lg mt-8">
-                        <i class="fab fa-whatsapp mr-2"></i> Klaim Kode Diskon (VIP/Deluxe)
-                    </button>
-                    </div>
+                </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                     <div class="room-card group bg-white rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 transform hover:scale-105" data-room="standard">
@@ -773,7 +767,7 @@
             <div class="container mx-auto px-4">
                 <div class="flex flex-col md:flex-row items-center">
                     <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
-                        <img src="53fea575-6eee-410f-8b30-bd531bc6fd48" 
+                        <img src="tentang.png"
                               alt="Penginapan Kawan Lama"
                               class="rounded-2xl shadow-2xl w-full h-auto">
                     </div>
@@ -875,7 +869,7 @@
                                         <h4 class="font-bold text-gray-800">Alamat</h4>
                                         <p class="text-gray-600">Jl. Rakoeta Sembiring Brahmana No. 991, Mardingding, Karo, Sumatera Utara</p>
                                         <a href="https://maps.app.goo.gl/asjqQ92aJeFdzDbBA?g_st=aw" target="_blank" rel="noopener noreferrer">
-                                            <img src="53fea575-6eee-410f-8b30-bd531bc6fd48" alt="Google Maps Location" class="map-image">
+                                            <img src="maps.jpg" alt="Google Maps Location" class="map-image">
                                         </a>
                                     </div>
                                 </div>
@@ -906,12 +900,9 @@
 
                     <div class="md:w-1/2">
                         <div class="bg-white p-10 rounded-2xl shadow-xl h-full">
-                            <h3 class="title-font text-3xl font-bold mb-6 text-gray-900">Sosial Media & Promo</h3>
-                            <p class="text-gray-600 mb-6 text-lg">Ikuti kami di media sosial dan dapatkan kode diskon spesial!</p>
+                            <h3 class="title-font text-3xl font-bold mb-6 text-gray-900">Sosial Media</h3>
+                            <p class="text-gray-600 mb-6 text-lg">Ikuti kami di media sosial untuk mendapatkan informasi terbaru dan penawaran spesial.</p>
 
-                            <button onclick="kirimKodeVoucher()" class="whatsapp-btn w-full font-semibold py-3 px-8 rounded-full transition duration-300 text-lg shadow-lg mb-8">
-                                <i class="fab fa-whatsapp mr-2"></i> Klaim Kode Diskon (VIP/Deluxe)
-                            </button>
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                                 <a href="https://www.facebook.com/kawanlamamardingding" target="_blank" class="social-icon bg-blue-600 hover:bg-blue-700 text-white p-6 rounded-xl text-center transition shadow-md">
                                     <i class="fab fa-facebook-f text-3xl mb-2"></i>
@@ -1437,34 +1428,7 @@
     </div>
 
     <script>
-        // --- FUNGSI WHATSAPP UNTUK KODE DISKON ---
-        function kirimKodeVoucher() {
-            const kodeDiskon = "DISKONKBLAMA50"; 
-            const nomorWhatsAppCS = "6282218399499"; 
-            
-            const pesan = `🎉 Selamat! Anda mendapatkan kode diskon spesial dari Penginapan Kawan Lama! 🎉
-
-*Kode Voucher Anda:*
-*${kodeDiskon}*
-
-*Kode ini berlaku untuk pemesanan Kamar Deluxe, VIP B, dan VIP A.*
-
-*Cara Klaim Diskon:*
-1. Salin kode voucher di atas.
-2. Lanjutkan ke proses pemesanan kamar yang berlaku.
-3. Masukkan kode voucher di kolom 'Kode Voucher' pada formulir pemesanan.
-
-Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
-[Tautan ke Situs Web Anda: ${window.location.href}]
-`;
-
-            const tautanWhatsApp = `https://wa.me/${nomorWhatsAppCS}?text=${encodeURIComponent(pesan)}`;
-            window.open(tautanWhatsApp, '_blank');
-        }
-        // --- END WHATSAPP FUNCTION ---
-        
-        
-        // --- DEVICE ID & AUTO-LOGIN LOGIC (PERBAIKAN KRITIS) ---
+        // --- DEVICE ID & AUTO-LOGIN LOGIC ---
         function getDeviceID() {
             let deviceID = localStorage.getItem('deviceID');
             if (!deviceID) {
@@ -1482,30 +1446,35 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
             
             userIdDisplay.value = deviceID;
 
-            // PERBAIKAN: Secara default tampilkan main-content. Hanya tampilkan login jika benar-benar kunjungan pertama.
-            if (!localStorage.getItem('hasVisited')) {
-                loginPage.style.display = 'flex';
-                mainContent.style.display = 'none';
-                document.body.style.overflow = 'hidden';
-            } else {
+            if (localStorage.getItem('hasVisited')) {
+                // User sudah pernah login sebelumnya, langsung masuk ke beranda
                 loginPage.style.display = 'none';
-                mainContent.style.display = 'block'; // Pastikan konten utama terlihat
+                mainContent.style.display = 'block';
                 document.body.style.overflow = 'auto';
                 document.documentElement.style.scrollBehavior = 'smooth';
                 initializeScrollAnimations();
+                console.log(`Auto-login. Device ID: ${deviceID}`);
+            } else {
+                // Pengunjung baru, tampilkan halaman login
+                loginPage.style.display = 'flex';
+                mainContent.style.display = 'none';
+                document.body.style.overflow = 'hidden';
+                console.log(`First-time visit. User ID: ${deviceID}`);
             }
         }
 
         document.getElementById('login-button').addEventListener('click', function() {
+            // Tandai user sebagai "sudah pernah berkunjung"
             localStorage.setItem('hasVisited', 'true');
+            // Alihkan ke fungsi utama
             checkUserAndRedirect();
         });
-        
+
+        // Jalankan fungsi saat halaman dimuat
         document.addEventListener('DOMContentLoaded', checkUserAndRedirect);
+
         // --- END DEVICE ID & AUTO-LOGIN LOGIC ---
-
-
-        // --- FUNGSI ANIMASI & UTILITY (Dipertahankan) ---
+        
         function initializeScrollAnimations() {
             const animatedElements = document.querySelectorAll('section, .room-card');
             const observer = new IntersectionObserver((entries) => {
@@ -1526,11 +1495,7 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
                 observer.observe(el);
             });
 
-            // Ensure the first section is visible immediately
-            const homeSection = document.querySelector('#home');
-            if (homeSection) {
-                homeSection.classList.add('visible');
-            }
+            document.querySelector('section').classList.add('visible');
         }
 
         // Scroll to top button
@@ -1557,10 +1522,7 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
         const mm = String(today.getMonth() + 1).padStart(2, '0');
         const yyyy = today.getFullYear();
         const minDate = yyyy + '-' + mm + '-' + dd;
-        const bookingDateInput = document.getElementById('booking-date');
-        if (bookingDateInput) {
-            bookingDateInput.min = minDate;
-        }
+        document.getElementById('booking-date').min = minDate;
         
         // Mobile menu toggle
         function toggleMobileMenu() {
@@ -1579,101 +1541,30 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
             document.body.style.overflow = 'auto';
         }
 
-        function showAlert(title, message) {
-            const alert = document.getElementById('alert-notification');
-            document.getElementById('alert-title').textContent = title;
-            document.getElementById('alert-message').textContent = message;
-            alert.classList.remove('hidden');
-            setTimeout(() => {
-                alert.classList.add('hidden');
-            }, 5000);
-        }
-
-        function closeAlert() {
-            document.getElementById('alert-notification').classList.add('hidden');
-        }
-        
-        function closeConfirmation() {
-            document.getElementById('confirmation-modal').classList.add('hidden');
-            document.getElementById('confirmation-modal').classList.remove('flex');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Payment method selection
-        function selectPaymentMethod(method, event) {
-            const bankOptions = document.getElementById('bank-options');
-            const transferWarning = document.getElementById('transfer-warning');
-
-            document.querySelectorAll('.payment-option').forEach(option => {
-                option.classList.remove('selected');
-            });
-            event.currentTarget.classList.add('selected');
-
-            if (method === 'transfer') {
-                bankOptions.classList.remove('hidden');
-                transferWarning.classList.remove('hidden'); 
-            } else {
-                bankOptions.classList.add('hidden');
-                transferWarning.classList.add('hidden'); 
-            }
-        }
-
-        function resetPaymentOptions() {
-            document.querySelectorAll('.payment-option').forEach(option => {
-                option.classList.remove('selected');
-            });
-            document.getElementById('bank-options').classList.add('hidden');
-            document.getElementById('transfer-warning').classList.add('hidden');
-            const codRadio = document.querySelector('input[name="payment"][value="cod"]');
-            if (codRadio) {
-                codRadio.checked = true;
-            }
-            // Tambahkan class 'selected' ke COD secara default
-            const codOption = document.querySelector('.payment-option').closest('div');
-            if (codOption && codOption.querySelector('input[value="cod"]')) {
-                codOption.classList.add('selected');
-            }
-        }
-        
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                const btn = event.currentTarget;
-                btn.textContent = 'Tersalin!';
-                btn.classList.add('copied');
-                setTimeout(() => {
-                    btn.textContent = 'Salin';
-                    btn.classList.remove('copied');
-                }, 2000);
-            }).catch(err => {
-                console.error('Failed to copy text: ', err);
-            });
-        }
-        // --- END FUNGSI ANIMASI & UTILITY ---
-
-
-        // --- VOUCHER & BOOKING LOGIC ---
+        // --- Voucher and Booking Logic ---
         const VOUCHER_CODES = [
             '0B3H4D5Y', '1K8Z6P3M', '2R9Q7J5N', '3C1W8L6A', '4F5G9H2S', '5V2T7B4U', '6P9Y3R8E', '7E4A1X5C', '8M6N9O3Z', '9L2J7S4D',
             'A8G1H5F2', 'B9C2D3E6', 'C7B4A1G9', 'D5H8J2K7', 'E6F9G3L4', 'F2G7H4I9', 'G1J4K5L8', 'H9I2J7K3', 'I5J8K6L1', 'J4K7L9M2',
             'K3L6M1N4', 'L2M5N8O1', 'M1N4O7P2', 'N9O2P5Q8', 'O8P1Q4R7', 'P7Q2R9S3', 'Q6R1S4T9', 'R5S9T2U8', 'S4T8U1V7', 'T3U7V9W4',
             'U2V6W8X5', 'V1W5X7Y3', 'W9X4Y6Z2', 'X8Y3Z5A1', 'Y7Z2A4B9', 'Z6A1B3C8', '0H5I4J3K', '1L8M7N6O', '2P9Q8R7S', '3T1U9V2W',
-            '4X5Y1Z6A', '5B2C7D3E', '6F9G4H8I', '7J4K1L5M', '8N6O9P3Q', '9R2S7T4U', 'DISKONKBLAMA50' // Kode promo utama
+            '4X5Y1Z6A', '5B2C7D3E', '6F9G4H8I', '7J4K1L5M', '8N6O9P3Q', '9R2S7T4U', 'A8G1H5F2', 'B9C2D3E6', 'C7B4A1G9', 'D5H8J2K7',
+            'E6F9G3L4', 'F2G7H4I9', 'G1J4K5L8', 'H9I2J7K3', 'I5J8K6L1', 'J4K7L9M2', 'K3L6M1N4', 'L2M5N8O1', 'M1N4O7P2', 'N9O2P5Q8',
+            'O8P1Q4R7', 'P7Q2R9S3', 'Q6R1S4T9', 'R5S9T2U8', 'S4T8U1V7', 'T3U7V9W4', 'U2V6W8X5', 'V1W5X7Y3', 'W9X4Y6Z2', 'X8Y3Z5A1',
+            'Y7Z2A4B9', 'Z6A1B3C8', '0H5I4J3K', '1L8M7N6O', '2P9Q8R7S', '3T1U9V2W', '4X5Y1Z6A', '5B2C7D3E', '6F9G4H8I', '7J4K1L5M',
+            '8N6O9P3Q', '9R2S7T4U', 'A8G1H5F2', 'B9C2D3E6', 'C7B4A1G9', 'D5H8J2K7', 'E6F9G3L4', 'F2G7H4I9', 'G1J4K5L8', 'H9I2J7K3',
+            'I5J8K6L1', 'J4K7L9M2', 'K3L6M1N4', 'L2M5N8O1', 'M1N4O7P2', 'N9O2P5Q8', 'O8P1Q4R7', 'P7Q2R9S3', 'Q6R1S4T9', 'R5S9T2U8'
         ];
 
+        let VOUCHER_USAGE_GLOBAL = JSON.parse(localStorage.getItem('voucherUsageGlobal')) || {};
         let VOUCHER_USAGE_DEVICE = JSON.parse(localStorage.getItem('voucherUsageDevice')) || {};
-        
+
         const VOUCHER_DISCOUNTS = {
             'deluxe': 100000,
             'vip-b': 125000,
-            'vip-a': 150000,
-            'DISKONKBLAMA50': { 
-                'deluxe': 100000,
-                'vip-b': 125000,
-                'vip-a': 150000
-            }
+            'vip-a': 150000
         };
-
-        const MAX_USES_PER_DEVICE = 2; // Batas 2 kali per user ID
+        const MAX_USES_PER_DEVICE = 2; // Maksimal 2 kali per user ID
+        const MAX_TOTAL_USES = 100; // Maksimal 100 kali per kode voucher
 
         let isKaraokeRoom = false;
         let quantity = 1;
@@ -1694,14 +1585,13 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
             const voucherContainer = document.getElementById('voucher-container');
             const quantityContainer = document.getElementById('quantity-container');
             
-            // Reset fields
             voucherContainer.classList.add('hidden');
             quantityContainer.classList.add('hidden');
+
             document.getElementById('voucher-code').value = '';
             document.getElementById('voucher-message').textContent = '';
             document.getElementById('voucher-message').className = 'text-sm mt-2 font-semibold';
-            resetPaymentOptions(); // Reset pilihan pembayaran
-
+            
             isKaraokeRoom = isKaraoke;
             
             if (isKaraoke) {
@@ -1745,7 +1635,6 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
             const roomType = document.getElementById('room-type').value;
             const voucherMessage = document.getElementById('voucher-message');
             
-            // Reset tampilan harga dan pesan
             document.getElementById('final-room-price').value = originalPrice;
             updateTotalPrice(originalPrice);
             voucherMessage.textContent = '';
@@ -1758,36 +1647,30 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
             }
             
             const deviceUsage = VOUCHER_USAGE_DEVICE[deviceID] && VOUCHER_USAGE_DEVICE[deviceID][voucherCode] ? VOUCHER_USAGE_DEVICE[deviceID][voucherCode] : 0;
+            const globalUsage = VOUCHER_USAGE_GLOBAL[voucherCode] || 0;
 
-            if (deviceUsage >= MAX_USES_PER_DEVICE) {
-                voucherMessage.textContent = `Maaf, Anda sudah mencapai batas penggunaan voucher ini (${MAX_USES_PER_DEVICE} kali) per perangkat.`;
+            if (globalUsage >= MAX_TOTAL_USES) {
+                voucherMessage.textContent = `Maaf, kode voucher ini sudah habis digunakan.`;
                 voucherMessage.classList.add('text-red-600');
                 return;
             }
 
-            let discountedPrice = 0;
-            let discountValid = false;
+            if (deviceUsage >= MAX_USES_PER_DEVICE) {
+                voucherMessage.textContent = `Maaf, Anda sudah mencapai batas penggunaan voucher ini (${MAX_USES_PER_DEVICE} kali).`;
+                voucherMessage.classList.add('text-red-600');
+                return;
+            }
 
-            if (voucherCode === 'DISKONKBLAMA50') {
-                if (VOUCHER_DISCOUNTS[voucherCode][roomType]) {
-                    discountedPrice = VOUCHER_DISCOUNTS[voucherCode][roomType];
-                    discountValid = true;
-                }
-            } else if (VOUCHER_DISCOUNTS[roomType] && typeof VOUCHER_DISCOUNTS[roomType] === 'number') {
-                discountedPrice = VOUCHER_DISCOUNTS[roomType];
-                discountValid = true;
+            if (VOUCHER_DISCOUNTS[roomType]) {
+                const discountedPrice = VOUCHER_DISCOUNTS[roomType];
+                document.getElementById('final-room-price').value = discountedPrice;
+                updateTotalPrice(discountedPrice);
+                voucherMessage.textContent = 'Voucher berhasil diterapkan!';
+                voucherMessage.classList.add('text-green-600');
+            } else {
+                voucherMessage.textContent = 'Voucher tidak berlaku untuk kamar ini.';
+                voucherMessage.classList.add('text-red-600');
             }
-            
-            if (!discountValid) {
-                 voucherMessage.textContent = 'Voucher tidak berlaku untuk kamar ini.';
-                 voucherMessage.classList.add('text-red-600');
-                 return;
-            }
-            
-            document.getElementById('final-room-price').value = discountedPrice;
-            updateTotalPrice(discountedPrice);
-            voucherMessage.textContent = 'Voucher berhasil diterapkan!';
-            voucherMessage.classList.add('text-green-600');
         }
 
         function incrementQuantity() {
@@ -1811,7 +1694,71 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
             document.getElementById('total-price').textContent = 'Total Harga: Rp 0';
             document.getElementById('original-price-display').classList.add('hidden');
         }
-        
+
+        // Payment method selection
+        function selectPaymentMethod(method, event) {
+            const bankOptions = document.getElementById('bank-options');
+            const transferWarning = document.getElementById('transfer-warning');
+
+            document.querySelectorAll('.payment-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+
+            if (method === 'transfer') {
+                bankOptions.classList.remove('hidden');
+                transferWarning.classList.remove('hidden'); // Tampilkan peringatan
+            } else {
+                bankOptions.classList.add('hidden');
+                transferWarning.classList.add('hidden'); // Sembunyikan peringatan
+            }
+        }
+
+        // Copy to clipboard function
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = event.currentTarget;
+                btn.textContent = 'Tersalin!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = 'Salin';
+                    btn.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+
+        function resetPaymentOptions() {
+            document.querySelectorAll('.payment-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            document.getElementById('bank-options').classList.add('hidden');
+            document.getElementById('transfer-warning').classList.add('hidden');
+            document.querySelector('input[name="payment"][value="cod"]').checked = true;
+        }
+
+        function closeConfirmation() {
+            document.getElementById('confirmation-modal').classList.add('hidden');
+            document.getElementById('confirmation-modal').classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        function showAlert(title, message) {
+            const alert = document.getElementById('alert-notification');
+            document.getElementById('alert-title').textContent = title;
+            document.getElementById('alert-message').textContent = message;
+            alert.classList.remove('hidden');
+            setTimeout(() => {
+                alert.classList.add('hidden');
+            }, 5000);
+        }
+
+        function closeAlert() {
+            document.getElementById('alert-notification').classList.add('hidden');
+        }
+
+        // WhatsApp redirection function
         function redirectToWhatsApp() {
             const name = document.getElementById('booking-name').value;
             const roomType = document.getElementById('room-type').value;
@@ -1825,19 +1772,20 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
             let originalRoomPrice;
             if (isKaraokeRoom) {
                 finalRoomPrice = quantity * pricePerHour;
-                originalRoomPrice = finalRoomPrice; 
+                originalRoomPrice = finalRoomPrice; // No original price for karaoke, it's a dynamic price
             } else {
                 finalRoomPrice = Number(document.getElementById('final-room-price').value);
                 originalRoomPrice = Number(document.getElementById('original-room-price').value);
             }
             
-            const isVoucherApplied = (voucherCode && VOUCHER_CODES.includes(voucherCode) && finalRoomPrice < originalRoomPrice);
+            const isVoucherApplied = (voucherCode && VOUCHER_CODES.includes(voucherCode) && VOUCHER_DISCOUNTS[roomType] && finalRoomPrice < originalRoomPrice);
             
-            // --- Logika Update Penggunaan Voucher ---
             if (isVoucherApplied) {
                 const deviceUsage = VOUCHER_USAGE_DEVICE[deviceID] && VOUCHER_USAGE_DEVICE[deviceID][voucherCode] ? VOUCHER_USAGE_DEVICE[deviceID][voucherCode] : 0;
+                const globalUsage = VOUCHER_USAGE_GLOBAL[voucherCode] || 0;
                 
-                if (deviceUsage < MAX_USES_PER_DEVICE) {
+                if (deviceUsage < MAX_USES_PER_DEVICE && globalUsage < MAX_TOTAL_USES) {
+                     // Update usage per device
                     if (!VOUCHER_USAGE_DEVICE[deviceID]) {
                         VOUCHER_USAGE_DEVICE[deviceID] = {};
                     }
@@ -1846,9 +1794,12 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
                     }
                     VOUCHER_USAGE_DEVICE[deviceID][voucherCode]++;
                     localStorage.setItem('voucherUsageDevice', JSON.stringify(VOUCHER_USAGE_DEVICE));
+                    
+                    // Update global usage
+                    VOUCHER_USAGE_GLOBAL[voucherCode] = (VOUCHER_USAGE_GLOBAL[voucherCode] || 0) + 1;
+                    localStorage.setItem('voucherUsageGlobal', JSON.stringify(VOUCHER_USAGE_GLOBAL));
                 }
             }
-            // --- End Logika Update Voucher ---
             
             const formattedDate = new Date(date).toLocaleDateString('id-ID', {
                 weekday: 'long',
@@ -1878,11 +1829,12 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
             message += `*Metode Pembayaran*: ${paymentMethod === 'cod' ? 'Bayar di Tempat' : 'Transfer Bank'}\n`;
             
             if (isVoucherApplied) {
-                const maskedVoucher = voucherCode.substring(0, 3) + '***' + voucherCode.substring(voucherCode.length - 3);
-                message += `\n*Kode Voucher Dipakai*: ${maskedVoucher}\n`;
+                const globalUsageAfter = VOUCHER_USAGE_GLOBAL[voucherCode] || 0;
+                const remainingUses = MAX_TOTAL_USES - globalUsageAfter;
+                const maskedVoucher = voucherCode.substring(0, 3) + '***' + voucherCode.substring(6);
+                message += `\n*User ID Acak*: ${deviceID}\n`;
+                message += `*Kode Voucher Acak*: ${maskedVoucher}\n`;
             }
-
-            message += `\n*User ID Acak (Admin Only)*: ${deviceID}\n`; // Tampilkan user ID acak untuk referensi admin
             
             message += `\n*Ketentuan Booking Kamar:*\n`;
             message += `1. Saat Check in silahkan infokan nama pemesan.\n`;
@@ -1894,7 +1846,7 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
             message += `Privasi dan kenyamanan anda prioritas kami.`;
 
             const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/6282218399499?text=${encodedMessage}`; 
+            const whatsappUrl = `https://wa.me/6282218399499?text=${encodedMessage}`;
             window.open(whatsappUrl, '_blank');
 
             closeConfirmation();
@@ -1922,29 +1874,28 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
 
             if (document.getElementById('voucher-container').classList.contains('hidden') === false && voucherCode) {
                 const deviceUsage = VOUCHER_USAGE_DEVICE[deviceID] && VOUCHER_USAGE_DEVICE[deviceID][voucherCode] ? VOUCHER_USAGE_DEVICE[deviceID][voucherCode] : 0;
+                const globalUsage = VOUCHER_USAGE_GLOBAL[voucherCode] || 0;
 
                 if (!VOUCHER_CODES.includes(voucherCode)) {
                     showAlert('Peringatan', 'Kode voucher tidak valid.');
                     return;
                 }
                 
+                if (globalUsage >= MAX_TOTAL_USES) {
+                    showAlert('Peringatan', `Maaf, kode voucher ini sudah habis. (${globalUsage} pengguna)`);
+                    return;
+                }
+
                 if (deviceUsage >= MAX_USES_PER_DEVICE) {
-                    showAlert('Peringatan', `Maaf, Anda sudah mencapai batas penggunaan voucher ini (${MAX_USES_PER_DEVICE} kali) per perangkat.`);
+                    showAlert('Peringatan', `Maaf, Anda sudah mencapai batas penggunaan voucher ini (${MAX_USES_PER_DEVICE} kali).`);
                     return;
                 }
                 
-                let discountAmount = 0;
-                if (voucherCode === 'DISKONKBLAMA50' && VOUCHER_DISCOUNTS[voucherCode][roomType]) {
-                     discountAmount = originalRoomPrice - VOUCHER_DISCOUNTS[voucherCode][roomType];
-                } else if (VOUCHER_DISCOUNTS[roomType] && typeof VOUCHER_DISCOUNTS[roomType] === 'number') {
-                     discountAmount = originalRoomPrice - VOUCHER_DISCOUNTS[roomType];
-                }
-
-                if (discountAmount > 0) {
-                    finalRoomPrice = originalRoomPrice - discountAmount;
+                if (VOUCHER_DISCOUNTS[roomType]) {
+                    finalRoomPrice = VOUCHER_DISCOUNTS[roomType];
                     isVoucherApplied = true;
                 } else {
-                    showAlert('Peringatan', 'Voucher tidak berlaku atau tidak valid untuk kamar ini.');
+                    showAlert('Peringatan', 'Voucher tidak berlaku untuk kamar ini.');
                     return;
                 }
             }
@@ -2022,35 +1973,38 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
                 showAlert('Pemesanan Berhasil!', alertMessage);
             }, 500);
         }
-        // --- END VOUCHER & BOOKING LOGIC ---
-
-        // --- CAROUSEL LOGIC (Dipertahankan) ---
+    </script>
+    <script>
         document.addEventListener('DOMContentLoaded', () => {
             const carouselContainers = document.querySelectorAll('.carousel-container');
-            const AUTOPLAY_INTERVAL = 3000; 
+            const AUTOPLAY_INTERVAL = 3000; // 3 seconds
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     const container = entry.target;
                     if (entry.isIntersecting) {
+                        // Start autoplay only when the carousel is visible
                         startAutoplay(container);
                     } else {
+                        // Stop autoplay when the carousel is no longer visible
                         stopAutoplay(container);
                     }
                 });
             }, {
-                threshold: 0.5 
+                threshold: 0.5 // Adjust as needed, 0.5 means 50% of the carousel is visible
             });
 
             carouselContainers.forEach(container => {
                 const carouselTrack = container.querySelector('.carousel-track');
                 const imagesAttr = carouselTrack.getAttribute('data-images');
-                const images = imagesAttr ? imagesAttr.split(',').map(src => src.trim()) : [];
+                const images = imagesAttr.split(',').map(src => src.trim());
 
                 if (images.length === 0) return;
 
+                // Clear any existing content to prevent duplication
                 carouselTrack.innerHTML = '';
 
+                // Create and append slides for the carousel
                 images.forEach(src => {
                     const slide = document.createElement('div');
                     slide.classList.add('carousel-slide');
@@ -2058,27 +2012,30 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
                     carouselTrack.appendChild(slide);
                 });
                 
+                // Add autoplay timer to the container's dataset
                 container.dataset.currentIndex = 0;
                 container.dataset.totalSlides = images.length;
                 container.dataset.isDragging = 'false';
                 
+                // Initial update and start observing
                 updateCarousel(container);
                 observer.observe(container);
 
+                // Navigation buttons
                 const prevBtn = container.querySelector('.prev-btn');
                 const nextBtn = container.querySelector('.next-btn');
                 
                 if (nextBtn) {
                     nextBtn.addEventListener('click', () => {
                         moveToNextSlide(container);
-                        startAutoplay(container); 
+                        startAutoplay(container); // Restart timer
                     });
                 }
 
                 if (prevBtn) {
                     prevBtn.addEventListener('click', () => {
                         moveToPrevSlide(container);
-                        startAutoplay(container); 
+                        startAutoplay(container); // Restart timer
                     });
                 }
                 
@@ -2094,21 +2051,23 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
                 container.addEventListener('touchend', e => {
                     touchEndX = e.changedTouches[0].clientX;
                     handleSwipe(container);
-                    startAutoplay(container); 
+                    startAutoplay(container); // Restart autoplay after touch ends
                 });
 
                 function handleSwipe(container) {
-                    const threshold = 50; 
+                    const threshold = 50; // Minimum distance to be considered a swipe
                     const swipeDistance = touchEndX - touchStartX;
 
                     if (swipeDistance > threshold) {
+                        // Swiped right (previous)
                         moveToPrevSlide(container);
                     } else if (swipeDistance < -threshold) {
+                        // Swiped left (next)
                         moveToNextSlide(container);
                     }
                 }
 
-                // Mouse Drag functionality
+                // Mouse Drag functionality (for desktop)
                 let isDragging = false;
                 let startPos = 0;
                 let currentTranslate = 0;
@@ -2119,18 +2078,19 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
                     container.dataset.isDragging = 'true';
                     startPos = e.clientX;
                     stopAutoplay(container);
-                    carouselTrack.style.transition = 'none'; 
+                    carouselTrack.style.transition = 'none'; // Disable transition for smooth dragging
                 });
 
                 container.addEventListener('mouseup', () => {
                     isDragging = false;
                     container.dataset.isDragging = 'false';
                     const movedBy = currentTranslate - prevTranslate;
-                    if (movedBy < -100) { 
+                    if (movedBy < -100) { // Swiped left
                         moveToNextSlide(container);
-                    } else if (movedBy > 100) { 
+                    } else if (movedBy > 100) { // Swiped right
                         moveToPrevSlide(container);
                     } else {
+                        // Snap back to the current slide if not enough movement
                         updateCarousel(container);
                     }
                     carouselTrack.style.transition = 'transform 0.5s ease-in-out';
@@ -2179,7 +2139,7 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
             }
             
             function startAutoplay(container) {
-                stopAutoplay(container); 
+                stopAutoplay(container); // Clear existing timer
                 container.dataset.autoplayTimer = setInterval(() => {
                     moveToNextSlide(container);
                 }, AUTOPLAY_INTERVAL);
@@ -2193,12 +2153,11 @@ Terima kasih atas kunjungannya. Kami tunggu kedatangan Anda!
                 }
             }
 
+            // Handle window resize
             window.addEventListener('resize', () => {
                 carouselContainers.forEach(container => updateCarousel(container));
             });
         });
-        // --- END CAROUSEL LOGIC ---
-
     </script>
 </body>
 </html>
