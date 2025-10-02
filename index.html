@@ -1303,6 +1303,19 @@
                         <input type="time" id="booking-time" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 transition" required>
                     </div>
                     
+                    <div id="vip-a-options-container" class="mb-5 hidden">
+                        <label class="block text-gray-700 font-semibold mb-2">Pilihan Garasi</label>
+                        <div class="flex flex-col space-y-2">
+                            <label class="flex items-center p-3 border rounded-lg cursor-pointer">
+                                <input type="radio" name="vip-a-option" value="no-garage" onchange="updateVipAPrice()" checked class="form-radio text-amber-700">
+                                <span class="ml-3 text-gray-700">Tanpa Garasi <span class="font-bold">(Rp 250.000)</span></span>
+                            </label>
+                            <label class="flex items-center p-3 border rounded-lg cursor-pointer">
+                                <input type="radio" name="vip-a-option" value="with-garage" onchange="updateVipAPrice()" class="form-radio text-amber-700">
+                                <span class="ml-3 text-gray-700">Dengan Garasi <span class="font-bold">(Rp 275.000)</span></span>
+                            </label>
+                        </div>
+                    </div>
                     <div id="voucher-container" class="mb-5 hidden">
                         <label for="voucher-code" class="block text-gray-700 font-semibold mb-2">Kode Voucher</label>
                         <div class="flex items-center">
@@ -1566,13 +1579,19 @@
         let VOUCHER_USAGE_GLOBAL = JSON.parse(localStorage.getItem('voucherUsageGlobal')) || {};
         let VOUCHER_USAGE_DEVICE = JSON.parse(localStorage.getItem('voucherUsageDevice')) || {};
 
+        // MODIFICATION START: Mengubah VOUCHER_DISCOUNTS untuk VIP A menjadi dinamis
         const VOUCHER_DISCOUNTS = {
             'deluxe': 100000,
             'vip-b': 125000,
-            'vip-a': 150000
+            'vip-a': { // Menjadi objek untuk menangani pilihan garasi
+                'no-garage': 150000,
+                'with-garage': 175000
+            }
         };
-        const MAX_USES_PER_DEVICE = 2; // Maksimal 2 kali per user ID
-        const MAX_TOTAL_USES = 100; // Maksimal 100 kali per kode voucher
+        // MODIFICATION END
+
+        const MAX_USES_PER_DEVICE = 2;
+        const MAX_TOTAL_USES = 100;
 
         let isKaraokeRoom = false;
         let quantity = 1;
@@ -1580,6 +1599,7 @@
         let currentRoomPrice = 0;
         let originalPrice = 0;
         
+        // MODIFICATION START: Memperbarui fungsi showBookingForm
         function showBookingForm(roomType, roomPrice, isKaraoke = false) {
             document.getElementById('room-type').value = roomType;
             document.getElementById('original-room-price').value = roomPrice;
@@ -1592,10 +1612,13 @@
             
             const voucherContainer = document.getElementById('voucher-container');
             const quantityContainer = document.getElementById('quantity-container');
+            const vipAOptionsContainer = document.getElementById('vip-a-options-container'); // Tambahkan ini
             
+            // Sembunyikan semua kontainer opsional terlebih dahulu
             voucherContainer.classList.add('hidden');
             quantityContainer.classList.add('hidden');
-
+            vipAOptionsContainer.classList.add('hidden'); // Sembunyikan pilihan garasi
+            
             document.getElementById('voucher-code').value = '';
             document.getElementById('voucher-message').textContent = '';
             document.getElementById('voucher-message').className = 'text-sm mt-2 font-semibold';
@@ -1612,9 +1635,37 @@
                 updateTotalPrice(roomPrice);
             } else {
                 voucherContainer.classList.remove('hidden');
+                if (roomType === 'vip-a') {
+                    vipAOptionsContainer.classList.remove('hidden'); // Tampilkan pilihan garasi hanya untuk VIP A
+                    document.querySelector('input[name="vip-a-option"][value="no-garage"]').checked = true; // Reset ke default
+                }
                 updateTotalPrice(roomPrice);
             }
         }
+        // MODIFICATION END
+
+        // MODIFICATION START: Fungsi baru untuk memperbarui harga VIP A berdasarkan pilihan garasi
+        function updateVipAPrice() {
+            const garageOption = document.querySelector('input[name="vip-a-option"]:checked').value;
+            const voucherCode = document.getElementById('voucher-code').value;
+
+            if (garageOption === 'with-garage') {
+                originalPrice = 275000;
+            } else {
+                originalPrice = 250000;
+            }
+
+            document.getElementById('original-room-price').value = originalPrice;
+            
+            // Jika ada voucher yang sudah diinput, terapkan ulang. Jika tidak, update harga normal.
+            if (voucherCode && document.getElementById('voucher-message').classList.contains('text-green-600')) {
+                applyVoucher();
+            } else {
+                document.getElementById('final-room-price').value = originalPrice;
+                updateTotalPrice(originalPrice);
+            }
+        }
+        // MODIFICATION END
 
         function updateTotalPrice(newPrice) {
             currentRoomPrice = newPrice;
@@ -1637,6 +1688,7 @@
             }
         }
         
+        // MODIFICATION START: Memperbarui fungsi applyVoucher
         function applyVoucher() {
             const voucherCode = document.getElementById('voucher-code').value.toUpperCase();
             const deviceID = getDeviceID();
@@ -1670,7 +1722,15 @@
             }
 
             if (VOUCHER_DISCOUNTS[roomType]) {
-                const discountedPrice = VOUCHER_DISCOUNTS[roomType];
+                let discountedPrice;
+                // Logika khusus untuk VIP A
+                if (roomType === 'vip-a') {
+                    const garageOption = document.querySelector('input[name="vip-a-option"]:checked').value;
+                    discountedPrice = VOUCHER_DISCOUNTS[roomType][garageOption];
+                } else {
+                    discountedPrice = VOUCHER_DISCOUNTS[roomType];
+                }
+
                 document.getElementById('final-room-price').value = discountedPrice;
                 updateTotalPrice(discountedPrice);
                 voucherMessage.textContent = 'Voucher berhasil diterapkan!';
@@ -1680,6 +1740,7 @@
                 voucherMessage.classList.add('text-red-600');
             }
         }
+        // MODIFICATION END
 
         function incrementQuantity() {
             quantity++;
@@ -1703,7 +1764,6 @@
             document.getElementById('original-price-display').classList.add('hidden');
         }
 
-        // Payment method selection
         function selectPaymentMethod(method, event) {
             const bankOptions = document.getElementById('bank-options');
             const transferWarning = document.getElementById('transfer-warning');
@@ -1715,14 +1775,13 @@
 
             if (method === 'transfer') {
                 bankOptions.classList.remove('hidden');
-                transferWarning.classList.remove('hidden'); // Tampilkan peringatan
+                transferWarning.classList.remove('hidden');
             } else {
                 bankOptions.classList.add('hidden');
-                transferWarning.classList.add('hidden'); // Sembunyikan peringatan
+                transferWarning.classList.add('hidden');
             }
         }
 
-        // Copy to clipboard function
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
                 const btn = event.currentTarget;
@@ -1766,10 +1825,10 @@
             document.getElementById('alert-notification').classList.add('hidden');
         }
 
-        // WhatsApp redirection function
+        // MODIFICATION START: Memperbarui fungsi redirectToWhatsApp
         function redirectToWhatsApp() {
             const name = document.getElementById('booking-name').value;
-            const roomType = document.getElementById('room-type').value;
+            let roomType = document.getElementById('room-type').value;
             const date = document.getElementById('booking-date').value;
             const time = document.getElementById('booking-time').value;
             const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
@@ -1780,30 +1839,31 @@
             let originalRoomPrice;
             if (isKaraokeRoom) {
                 finalRoomPrice = quantity * pricePerHour;
-                originalRoomPrice = finalRoomPrice; // No original price for karaoke, it's a dynamic price
+                originalRoomPrice = finalRoomPrice;
             } else {
                 finalRoomPrice = Number(document.getElementById('final-room-price').value);
                 originalRoomPrice = Number(document.getElementById('original-room-price').value);
             }
             
-            const isVoucherApplied = (voucherCode && VOUCHER_CODES.includes(voucherCode) && VOUCHER_DISCOUNTS[roomType] && finalRoomPrice < originalRoomPrice);
+            let isVoucherApplicable = false;
+            if (roomType === 'vip-a') {
+                isVoucherApplicable = VOUCHER_DISCOUNTS[roomType] && VOUCHER_DISCOUNTS[roomType][document.querySelector('input[name="vip-a-option"]:checked').value];
+            } else {
+                isVoucherApplicable = VOUCHER_DISCOUNTS[roomType];
+            }
+
+            const isVoucherApplied = (voucherCode && VOUCHER_CODES.includes(voucherCode) && isVoucherApplicable && finalRoomPrice < originalRoomPrice);
             
             if (isVoucherApplied) {
                 const deviceUsage = VOUCHER_USAGE_DEVICE[deviceID] && VOUCHER_USAGE_DEVICE[deviceID][voucherCode] ? VOUCHER_USAGE_DEVICE[deviceID][voucherCode] : 0;
                 const globalUsage = VOUCHER_USAGE_GLOBAL[voucherCode] || 0;
                 
                 if (deviceUsage < MAX_USES_PER_DEVICE && globalUsage < MAX_TOTAL_USES) {
-                     // Update usage per device
-                    if (!VOUCHER_USAGE_DEVICE[deviceID]) {
-                        VOUCHER_USAGE_DEVICE[deviceID] = {};
-                    }
-                    if (!VOUCHER_USAGE_DEVICE[deviceID][voucherCode]) {
-                        VOUCHER_USAGE_DEVICE[deviceID][voucherCode] = 0;
-                    }
+                    if (!VOUCHER_USAGE_DEVICE[deviceID]) VOUCHER_USAGE_DEVICE[deviceID] = {};
+                    if (!VOUCHER_USAGE_DEVICE[deviceID][voucherCode]) VOUCHER_USAGE_DEVICE[deviceID][voucherCode] = 0;
                     VOUCHER_USAGE_DEVICE[deviceID][voucherCode]++;
                     localStorage.setItem('voucherUsageDevice', JSON.stringify(VOUCHER_USAGE_DEVICE));
                     
-                    // Update global usage
                     VOUCHER_USAGE_GLOBAL[voucherCode] = (VOUCHER_USAGE_GLOBAL[voucherCode] || 0) + 1;
                     localStorage.setItem('voucherUsageGlobal', JSON.stringify(VOUCHER_USAGE_GLOBAL));
                 }
@@ -1815,10 +1875,17 @@
                 month: 'long',
                 year: 'numeric'
             });
+            
+            // Tambahkan info garasi ke tipe kamar jika VIP A
+            let roomTypeDisplay = roomType.charAt(0).toUpperCase() + roomType.slice(1);
+            if (roomType === 'vip-a') {
+                const garageOption = document.querySelector('input[name="vip-a-option"]:checked').value;
+                roomTypeDisplay = `VIP A (${garageOption === 'with-garage' ? 'Dengan Garasi' : 'Tanpa Garasi'})`;
+            }
 
             let message = `*Pesanan Kamar Penginapan Kawan Lama*\n\n`;
             message += `*Nama Pemesan*: ${name}\n`;
-            message += `*Tipe Kamar*: ${roomType}\n`;
+            message += `*Tipe Kamar*: ${roomTypeDisplay}\n`;
             
             if (isKaraokeRoom) {
                 message += `*Durasi Sewa*: ${quantity} jam\n`;
@@ -1837,8 +1904,6 @@
             message += `*Metode Pembayaran*: ${paymentMethod === 'cod' ? 'Bayar di Tempat' : 'Transfer Bank'}\n`;
             
             if (isVoucherApplied) {
-                const globalUsageAfter = VOUCHER_USAGE_GLOBAL[voucherCode] || 0;
-                const remainingUses = MAX_TOTAL_USES - globalUsageAfter;
                 const maskedVoucher = voucherCode.substring(0, 3) + '***' + voucherCode.substring(6);
                 message += `\n*User ID Acak*: ${deviceID}\n`;
                 message += `*Kode Voucher Acak*: ${maskedVoucher}\n`;
@@ -1861,6 +1926,7 @@
             closeBookingForm();
             document.getElementById('booking-form').reset();
         }
+        // MODIFICATION END
 
         function submitBooking(event) {
             event.preventDefault();
@@ -1900,7 +1966,14 @@
                 }
                 
                 if (VOUCHER_DISCOUNTS[roomType]) {
-                    finalRoomPrice = VOUCHER_DISCOUNTS[roomType];
+                    // MODIFICATION START: Logika voucher untuk VIP A
+                    if (roomType === 'vip-a') {
+                        const garageOption = document.querySelector('input[name="vip-a-option"]:checked').value;
+                        finalRoomPrice = VOUCHER_DISCOUNTS[roomType][garageOption];
+                    } else {
+                        finalRoomPrice = VOUCHER_DISCOUNTS[roomType];
+                    }
+                    // MODIFICATION END
                     isVoucherApplied = true;
                 } else {
                     showAlert('Peringatan', 'Voucher tidak berlaku untuk kamar ini.');
