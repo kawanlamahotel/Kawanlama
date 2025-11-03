@@ -13,8 +13,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Penginapan Kawan Lama - Hotel Dengan Suasana Perdesaan Yang Asri</title>
 
-    <link rel="icon" href="bg.jpg" type="image/jpeg" />
-    <link rel="apple-touch-icon" href="bg.jpg" />
+    <link rel="icon" href="latar.jpg" type="image/jpeg" />
+    <link rel="apple-touch-icon" href="latar.jpg" />
+    <meta name="description" content="Temukan pengalaman menginap tak terlupakan di Penginapan Kawan Lama Mardingding. Suasana perdesaan yang asri, kamar nyaman, dan harga terjangkau.">
+    <meta name="keywords" content="Penginapan Kawan Lama, Hotel Mardingding, Penginapan Mardingding, Hotel Karo, Penginapan Kawan Lama Mardingding, Kawan Lama Hotel">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -2089,10 +2091,12 @@
                 carouselTrack.innerHTML = '';
 
                 // Create and append slides for the carousel
-                images.forEach(src => {
+                // PENYEMPURNAAN: Menambahkan 'index' untuk alt text yang lebih baik
+                images.forEach((src, index) => {
                     const slide = document.createElement('div');
                     slide.classList.add('carousel-slide');
-                    slide.innerHTML = `<img src="${src}" alt="Slide Image">`;
+                    // PENYEMPURNAAN: Mengganti alt="Slide Image" agar lebih deskriptif untuk aksesibilitas
+                    slide.innerHTML = `<img src="${src}" alt="Gambar galeri kamar ${index + 1}">`;
                     carouselTrack.appendChild(slide);
                 });
                 
